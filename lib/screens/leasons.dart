@@ -25,9 +25,11 @@ class _LeasonsState extends State<LeasonsScreen> {
           _isLoading = false;
         });
       }).catchError((onError) {
-        setState(() {
+       if(mounted){
+          setState(() {
           _isLoading = false;
         });
+       }
       });
     }
     _isInit = false;

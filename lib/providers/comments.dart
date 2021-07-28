@@ -18,14 +18,17 @@ class Comments with ChangeNotifier {
       final response =
           await http.get(Uri.parse('${AppApi.COMMENTS_API}$lessId'));
 
-      final extractedData = json.decode(response.body) as Map<String, dynamic>;
-
+      final Map<String, dynamic>? extractedData =
+          json.decode(response.body) as Map<String, dynamic>;
+      List<Comment> loadedComments = [];
       if (extractedData == null) {
+        loadedComments = [];
+         _items = loadedComments;
+         notifyListeners();
         return;
       }
-      var decodedComments = extractedData['comments'] as List<dynamic>;
+      var decodedComments = extractedData['comments']!=null?extractedData['comments'] as List<dynamic>:[];
 
-      final List<Comment> loadedComments = [];
       decodedComments.forEach((comment) {
         loadedComments.add(Comment(
             id: int.parse(comment['id']),
@@ -45,16 +48,37 @@ class Comments with ChangeNotifier {
     }
   }
 
-  Future<void> addComment(Comment comment) async {
+  Future<bool> addComment(
+    String fullName,
+    String commnetContent,
+    int lessonId,
+  ) async {
     try {
-      final res = await http.post(Uri.parse(AppApi.ADDCOMMENT_API),body: {
-        
-      });
+      print(lessonId.runtimeType);
+      final response = await http.post(Uri.parse(AppApi.ADDCOMMENT_API),
+          body: json.encode({
+            "fullname": fullName,
+            "leasonid": lessonId,
+            "comment": commnetContent
+          }));
+
+      notifyListeners();
+      return true;
     } catch (error) {
       _items = [];
+
       notifyListeners();
       print(error);
-      throw (error);
+      return false;
     }
+  }
+
+  void emptyComments() {
+    _items = [];
+    notifyListeners();
+  }
+
+  void emptyCommentsForInit() {
+    _items = [];
   }
 }

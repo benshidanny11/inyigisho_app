@@ -2,27 +2,31 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:inyigisho_app/constants/apis.dart';
 
+import 'package:inyigisho_app/constants/apis.dart';
 import 'package:inyigisho_app/models/Leason.dart';
 
-class Leasons with ChangeNotifier {
-  List<Leason> _items = [];
+class ArchiveLessons with ChangeNotifier {
+  List<Leason> _arciveItems = [];
 
-  Future<void> fetchLasons() async {
+  List<Leason> get archiveItems {
+    return [..._arciveItems];
+  }
+
+  Future<void> fetchLasons(String month, String year) async {
     try {
-      final response = await http.get(Uri.parse(AppApi.LEASONS_API));
+      final response =
+          await http.get(Uri.parse(AppApi.getArchiveApi(month, year)));
       final Map<String, dynamic>? extractedData =
           json.decode(response.body) as Map<String, dynamic>;
-      final List<Leason> loadedLeasons = [];
-      if (extractedData == null) {
-        _items = [];
 
+      if (extractedData == null) {
+        _arciveItems = [];
         return;
       }
       var decodedLeasons = extractedData['lesons'] as List<dynamic>;
       print('Type:${decodedLeasons.runtimeType}');
-
+      final List<Leason> loadedLeasons = [];
       decodedLeasons.forEach((leason) {
         print(leason['id']);
         loadedLeasons.add(Leason(
@@ -35,20 +39,12 @@ class Leasons with ChangeNotifier {
             posterName: leason['posted_by']));
       });
 
-      _items = loadedLeasons;
+      _arciveItems = loadedLeasons;
       notifyListeners();
     } catch (error) {
-      _items = [];
+      _arciveItems = [];
       print(error);
       throw (error);
     }
-  }
-
-  List<Leason> get items {
-    return [..._items];
-  }
-
-  Leason findleason(int id) {
-    return _items.firstWhere((leason) => leason.id == id);
   }
 }

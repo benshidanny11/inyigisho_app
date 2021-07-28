@@ -6,6 +6,7 @@ import 'package:inyigisho_app/providers/comments.dart';
 import 'package:inyigisho_app/widgets/postcomment.dart';
 import 'package:provider/provider.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:share_plus/share_plus.dart';
 
 class LeasonDatails extends StatefulWidget {
   const LeasonDatails({Key? key}) : super(key: key);
@@ -75,10 +76,13 @@ class _LeasonDatailsState extends State<LeasonDatails> {
 
     /// Compulsory
     audioPlayer.onPlayerStateChanged.listen((PlayerState state) {
-      setState(() {
-        audioPlayerState = state;
-      });
+      if (mounted) {
+        setState(() {
+          audioPlayerState = state;
+        });
+      }
     });
+    Provider.of<Comments>(context, listen: false).emptyCommentsForInit();
   }
 
   /// Compulsory
@@ -86,6 +90,7 @@ class _LeasonDatailsState extends State<LeasonDatails> {
   void dispose() {
     audioPlayer.release();
     audioPlayer.dispose();
+
     super.dispose();
   }
 
@@ -99,14 +104,26 @@ class _LeasonDatailsState extends State<LeasonDatails> {
     });
   }
 
-  void handleShowCommentBottomSheet(BuildContext ctx) {
-    scaffoldKey.currentState!.showBottomSheet((context) => PostComment());
-    //showBottomSheet((context) => BottomSheetWidget());
-    // sheetController.closed.then((value) {
-    //   print("closed");
-    // });
+  void addCommentHandler(
+      BuildContext ctx, String name, String comment, int lessonId) async {
+    await Provider.of<Comments>(context, listen: false)
+        .addComment(name, comment, lessonId);
+    setState(() {
+      Provider.of<Comments>(context, listen: false).emptyComments();
+    });
+    Navigator.of(ctx).pop();
+  }
 
-  //  showBottomSheet(context: ctx, builder: (context) => PostComment());
+  void handleShowCommentBottomSheet(BuildContext ctx, int lessId) {
+    scaffoldKey.currentState!.showBottomSheet((context) => PostComment(
+          handleAddComment: addCommentHandler,
+          lessId: lessId,
+        ));
+  }
+
+  void _handleShare(String title, String body, String lessonUrl) {
+    Share.share('$title\n\n$body\n\nListen to the lesson here: ${AppApi.ROOT_API}$lessonUrl',
+        subject: title);
   }
 
   @override
@@ -216,12 +233,18 @@ class _LeasonDatailsState extends State<LeasonDatails> {
                           Text(getTimeString(audioDuration)),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: Icon(
-                          Icons.share,
-                          color: Theme.of(context).primaryColor,
-                          size: 25,
+                      GestureDetector(
+                        onTap: () {
+                          _handleShare(loadedLeason.title,
+                              loadedLeason.description, loadedLeason.audionUrl);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: Icon(
+                            Icons.share,
+                            color: Theme.of(context).primaryColor,
+                            size: 25,
+                          ),
                         ),
                       )
                     ],
@@ -254,7 +277,7 @@ class _LeasonDatailsState extends State<LeasonDatails> {
                       ),
                       TextButton.icon(
                           onPressed: () {
-                            handleShowCommentBottomSheet(context);
+                            handleShowCommentBottomSheet(context, leasonId);
                           },
                           icon: Icon(Icons.message_rounded),
                           label: Text("Add comment"))

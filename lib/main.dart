@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:inyigisho_app/providers/ArchiveLessons.dart';
+import 'package:inyigisho_app/providers/Years.dart';
 import 'package:inyigisho_app/providers/comments.dart';
+import 'package:inyigisho_app/screens/archives.dart';
 import 'package:provider/provider.dart';
 
 import 'package:inyigisho_app/screens/home.dart';
@@ -18,6 +21,8 @@ class MyApp extends StatelessWidget {
   providers: [
     ChangeNotifierProvider<Leasons>(create: (_)=>Leasons(),),
     ChangeNotifierProvider<Comments>(create: (_)=>Comments(),),
+    ChangeNotifierProvider<Years>(create: (_)=>Years()),
+    ChangeNotifierProvider<ArchiveLessons>(create: (_)=>ArchiveLessons())
   ],
       child: MaterialApp(
         title: 'Leasons',

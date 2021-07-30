@@ -52,24 +52,25 @@ class _PostCommentState extends State<PostComment> {
             height: 20,
           ),
           TextField(
-            decoration: InputDecoration(
-                labelText: "Your name",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.grey[300] as Color, width: 0.7),
-                ),
-                 focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).primaryColor, width: 0.7),
-                ),
-                filled: true,
-                contentPadding: EdgeInsets.all(10),
-                fillColor: Colors.white),
-            controller: nameController,
-          ),
+              decoration: InputDecoration(
+                  labelText: "Your name",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.grey[300] as Color, width: 0.7),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor, width: 0.7),
+                  ),
+                  filled: true,
+                  contentPadding: EdgeInsets.all(10),
+                  fillColor: Colors.white),
+              controller: nameController,
+              keyboardType: TextInputType.text,
+              textCapitalization: TextCapitalization.words),
           SizedBox(
             height: 20,
           ),
@@ -77,26 +78,27 @@ class _PostCommentState extends State<PostComment> {
             height: 5 * 20,
             width: double.infinity,
             child: TextField(
-              decoration: InputDecoration(
-                labelText: "Comment",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
+                decoration: InputDecoration(
+                  labelText: "Comment",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Colors.grey[300] as Color, width: 0.7),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor, width: 0.7),
+                  ),
+                  filled: true,
+                  contentPadding: const EdgeInsets.all(10),
+                  fillColor: Colors.white,
                 ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Colors.grey[300] as Color, width: 0.7),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Theme.of(context).primaryColor, width: 0.7),
-                ),
-                filled: true,
-                contentPadding: const EdgeInsets.all(10),
-                fillColor: Colors.white,
-              ),
-              maxLines: 5,
-              controller: commentController,
-            ),
+                maxLines: 5,
+                controller: commentController,
+                keyboardType: TextInputType.text,
+                textCapitalization: TextCapitalization.sentences),
           ),
           SizedBox(
             height: 20,

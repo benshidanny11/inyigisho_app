@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:inyigisho_app/constants/apis.dart';
-import 'package:inyigisho_app/models/comment.dart';
 import 'package:inyigisho_app/providers/Leasons.dart';
 import 'package:inyigisho_app/providers/comments.dart';
 import 'package:inyigisho_app/widgets/postcomment.dart';
@@ -23,8 +22,10 @@ class _LeasonDatailsState extends State<LeasonDatails> {
   int timeProgress = 0;
   int audioDuration = 0;
   String playingState = "";
+  String viewCommentsLabel = "View Comments";
 
   bool isLoadingComments = false;
+  bool isCommentsShown = false;
 
   Widget slider() {
     return Container(
@@ -94,24 +95,47 @@ class _LeasonDatailsState extends State<LeasonDatails> {
     super.dispose();
   }
 
-  void loadComments(BuildContext ctx, int lessId) async {
-    setState(() {
-      isLoadingComments = true;
-    });
-    await Provider.of<Comments>(ctx, listen: false).fetchComments(lessId);
-    setState(() {
-      isLoadingComments = false;
-    });
+  void loadComments(BuildContext ctx, int lessId, int commentCount) async {
+    if (commentCount == 0) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("No comments are available"),
+      ));
+    } else {
+      if (viewCommentsLabel.compareTo("View Comments") == 0) {
+        setState(() {
+          isLoadingComments = true;
+        });
+        await Provider.of<Comments>(ctx, listen: false).fetchComments(lessId);
+        setState(() {
+          isLoadingComments = false;
+          viewCommentsLabel = "Hide comments";
+        });
+      } else {
+        setState(() {
+          viewCommentsLabel = "View Comments";
+        });
+        Provider.of<Comments>(ctx, listen: false).emptyComments();
+      }
+    }
   }
 
   void addCommentHandler(
       BuildContext ctx, String name, String comment, int lessonId) async {
-    await Provider.of<Comments>(context, listen: false)
-        .addComment(name, comment, lessonId);
-    setState(() {
-      Provider.of<Comments>(context, listen: false).emptyComments();
+    Provider.of<Comments>(context, listen: false)
+        .addComment(name, comment, lessonId)
+        .then((_) {
+      setState(() {
+        Provider.of<Comments>(context, listen: false).emptyComments();
+        Provider.of<Leasons>(context, listen: false)
+            .findleason(lessonId)
+            .commentCount += 1;
+      });
+      Navigator.of(ctx).pop();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Comment was added successfully, click view comments to reload"),
+        duration: Duration(seconds: 3),
+      ));
     });
-    Navigator.of(ctx).pop();
   }
 
   void handleShowCommentBottomSheet(BuildContext ctx, int lessId) {
@@ -122,7 +146,8 @@ class _LeasonDatailsState extends State<LeasonDatails> {
   }
 
   void _handleShare(String title, String body, String lessonUrl) {
-    Share.share('$title\n\n$body\n\nListen to the lesson here: ${AppApi.ROOT_API}$lessonUrl',
+    Share.share(
+        '$title\n\n$body\n\nListen to the lesson here: ${AppApi.ROOT_API}$lessonUrl',
         subject: title);
   }
 
@@ -266,22 +291,30 @@ class _LeasonDatailsState extends State<LeasonDatails> {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextButton(
-                        child: Text("View comments"),
-                        onPressed: () {
-                          loadComments(context, loadedLeason.id);
-                        },
-                      ),
-                      TextButton.icon(
+                  IntrinsicHeight(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextButton(
+                          child: Text('$viewCommentsLabel (${loadedLeason.commentCount})'),
                           onPressed: () {
-                            handleShowCommentBottomSheet(context, leasonId);
+                            loadComments(context, loadedLeason.id,
+                                loadedLeason.commentCount);
                           },
-                          icon: Icon(Icons.message_rounded),
-                          label: Text("Add comment"))
-                    ],
+                        ),
+                        VerticalDivider(
+                          width: 2.0,
+                          thickness: 2.0,
+                          color: Colors.grey[200],
+                        ),
+                        TextButton.icon(
+                            onPressed: () {
+                              handleShowCommentBottomSheet(context, leasonId);
+                            },
+                            icon: Icon(Icons.message_rounded),
+                            label: Text("Add comment"))
+                      ],
+                    ),
                   ),
                   Divider(),
                   Container(
@@ -304,8 +337,12 @@ class _LeasonDatailsState extends State<LeasonDatails> {
                                         Text(commentData.items[index].userName),
                                     subtitle: Text(commentData
                                         .items[index].commentContent),
-                                    trailing:
-                                        Text(commentData.items[index].doneOn),
+                                    trailing: Text(
+                                      commentData.items[index].doneOn,
+                                      style: TextStyle(
+                                          color: Theme.of(context).primaryColor,
+                                          fontSize: 12),
+                                    ),
                                   );
                                 },
                                 itemCount: commentData.items.length,
@@ -321,3 +358,5 @@ class _LeasonDatailsState extends State<LeasonDatails> {
     );
   }
 }
+
+enum CommentOptions { ShowComment, HideComment }

@@ -1,24 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:inyigisho_app/items/leasonitem.dart';
-import 'package:inyigisho_app/providers/Leasons.dart';
+import 'package:inyigisho_app/items/videolessitem.dart';
+import 'package:inyigisho_app/providers/videolessons.dart';
 import 'package:provider/provider.dart';
 
-class LeasonsScreen extends StatefulWidget {
+class VideoLessonsScreen extends StatefulWidget {
+
+
+  VideoLessonsScreen({ Key? key }) : super(key: key);
+
+ 
+
   @override
-  _LeasonsState createState() => _LeasonsState();
+  _VideoLessonsScreenState createState() => _VideoLessonsScreenState();
 }
 
-class _LeasonsState extends State<LeasonsScreen> {
+class _VideoLessonsScreenState extends State<VideoLessonsScreen> {
   bool _isInit = true;
   bool _isLoading = false;
 
-  @override
+    @override
   void didChangeDependencies() {
     if (_isInit) {
       setState(() {
         _isLoading = true;
       });
-      Provider.of<Leasons>(context).fetchLasons().then((_) {
+      Provider.of<VideoLessons>(context).fetchLasons().then((_) {
         setState(() {
           _isLoading = false;
         });
@@ -31,24 +37,18 @@ class _LeasonsState extends State<LeasonsScreen> {
       });
     }
     _isInit = false;
-    if (Provider.of<Leasons>(context).items.length > 0) {
+    if (Provider.of<VideoLessons>(context).items.length > 0) {
       setState(() {});
     }
     super.didChangeDependencies();
   }
 
-  void handleSearch(String value) {
-
-    setState(() {
-      Provider.of<Leasons>(context,listen: false).searchLeason(value);
-    });
-
-  }
 
   @override
   Widget build(BuildContext context) {
+
     double screenHeight = MediaQuery.of(context).size.height;
-    final leasonData = Provider.of<Leasons>(context);
+    final leasonData = Provider.of<VideoLessons>(context);
 
     return SingleChildScrollView(
       child: Column(
@@ -71,7 +71,7 @@ class _LeasonsState extends State<LeasonsScreen> {
                   ),
                 ),
                 onChanged: (value) {
-                  handleSearch(value);
+                 // handleSearch(value);
                 },
               ),
             ),
@@ -88,7 +88,7 @@ class _LeasonsState extends State<LeasonsScreen> {
                       height: screenHeight * 0.7,
                       child: ListView.builder(
                         itemBuilder: (context, index) {
-                          return LeasonItem(leasonData.foundItems[index]);
+                          return VideoLessonItem(leasonData.foundItems[index]);
                         },
                         itemCount: leasonData.foundItems.length,
                       ),

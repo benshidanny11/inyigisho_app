@@ -1,20 +1,25 @@
-import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
-import 'package:inyigisho_app/constants/routes.dart';
-import 'package:inyigisho_app/models/Leason.dart';
+import 'package:flutter/material.dart';
+import 'package:inyigisho_app/extracteddata/ExtractedStrings.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class LeasonItem extends StatelessWidget {
-  
-  final Leason leason;
-  const LeasonItem(this.leason);
+import 'package:inyigisho_app/constants/apis.dart';
+import 'package:inyigisho_app/constants/routes.dart';
+import 'package:inyigisho_app/models/videolesson.dart';
+
+class VideoLessonItem extends StatelessWidget {
+  final VideoLeason leason;
+  const VideoLessonItem(this.leason);
 
   void _handleItemClick(BuildContext context) {
-    Navigator.of(context)
-        .pushNamed(RouteConstants.LeasonDetailsRoute, arguments: leason.id);
+    ExtraCtedStrings.YOURUBE_URL = leason.videoUrl;
+    Navigator.of(context).pushNamed(RouteConstants.VideoLeasonDetailsRoute,
+        arguments: leason.id);
   }
 
   @override
   Widget build(BuildContext context) {
+    
     return GestureDetector(
       onTap: () {
         _handleItemClick(context);
@@ -37,9 +42,20 @@ class LeasonItem extends StatelessWidget {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.fill,
-                              image: NetworkImage(leason.featureImageUrl),
+                              image: NetworkImage(AppApi.getVideoThumbnail(
+                                  YoutubePlayer.convertUrlToId(leason.videoUrl)
+                                      .toString())),
                             ),
                           )),
+                      Positioned(
+                        child: Icon(
+                          Icons.play_circle,
+                          color: Colors.grey[100],
+                          size: 20,
+                        ),
+                        top: 32,
+                        left: 32,
+                      ),
                       Positioned(
                           bottom: 2,
                           child: Container(
@@ -91,9 +107,15 @@ class LeasonItem extends StatelessWidget {
               children: [
                 Badge(
                   position: BadgePosition.topEnd(top: 2, end: 2),
-                  badgeContent: Text(leason.commentCount.toString(),style: TextStyle(color: Colors.white,fontSize: 9),),
+                  badgeContent: Text(
+                    leason.commentCount.toString(),
+                    style: TextStyle(color: Colors.white, fontSize: 9),
+                  ),
                   child: IconButton(
-                    icon: Icon(Icons.message,color: Theme.of(context).primaryColor,),
+                    icon: Icon(
+                      Icons.message,
+                      color: Theme.of(context).primaryColor,
+                    ),
                     onPressed: () {},
                   ),
                   badgeColor: Theme.of(context).accentColor,

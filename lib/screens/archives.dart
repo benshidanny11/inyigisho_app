@@ -3,7 +3,6 @@ import 'package:inyigisho_app/items/leasonitem.dart';
 import 'package:inyigisho_app/providers/ArchiveLessons.dart';
 import 'package:inyigisho_app/providers/Years.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 
 class Archives extends StatefulWidget {
   Archives({Key? key}) : super(key: key);
@@ -55,6 +54,7 @@ class _ArchivesState extends State<Archives> {
 
     var now = new DateTime.now();
     int currentMon = now.month;
+   
     if (_isInit) {
       setState(() {
         _isLoading = true;
@@ -74,14 +74,16 @@ class _ArchivesState extends State<Archives> {
     setState(() {
       _isLoading = true;
     });
-    Provider.of<ArchiveLessons>(context,listen: false).fetchLasons(month, year).then((_) {
-     setState(() {
+    Provider.of<ArchiveLessons>(context, listen: false)
+        .fetchLasons(month, year)
+        .then((_) {
+      setState(() {
         _isLoading = false;
-     });
+      });
     }).catchError((error) {
-     setState(() {
+      setState(() {
         _isLoading = false;
-     });
+      });
     });
   }
 

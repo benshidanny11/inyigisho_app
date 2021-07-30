@@ -1,20 +1,18 @@
-class Leason {
+class VideoLeason {
   final int id;
   final String title;
   final String description;
-  final String audionUrl;
+  final String videoUrl;
   final String posterName;
-  final String featureImageUrl;
   final String doneOn;
   int commentCount;
 
-  Leason(
+  VideoLeason(
       {required this.id,
       required this.title,
       required this.description,
-      required this.audionUrl,
+      required this.videoUrl,
       required this.posterName,
-      required this.featureImageUrl,
       required this.doneOn,
       required this.commentCount});
 }

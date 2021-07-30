@@ -33,6 +33,8 @@ dependencies:
   audioplayers: ^0.19.1
   intl: ^0.17.0
   share_plus: ^2.1.4
+  badges: ^2.0.1
+  youtube_player_flutter: ^8.0.0
 
 dev_dependencies:
   flutter_test:
@@ -65,12 +67,17 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
+  fonts:
+    - family: RobotoCondensed
+      fonts:
+        - asset: assets/fonts/RobotoCondensed-Bold.ttf
+        - asset: assets/fonts/RobotoCondensed-BoldItalic.ttf
+        - asset: assets/fonts/RobotoCondensed-Italic.ttf
+        - asset: assets/fonts/RobotoCondensed-Light.ttf
+        - asset: assets/fonts/RobotoCondensed-LightItalic.ttf
+        - asset: assets/fonts/RobotoCondensed-Regular.ttf
+
+       
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

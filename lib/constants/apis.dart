@@ -9,7 +9,14 @@ class AppApi {
   static const String YEARS_API =
       "https://uruganiriro.ml/app/inyigisho/api/yearsapi.php";
 
+  static const String VIDEO_LESSONS_API =
+      "https://uruganiriro.ml/app/inyigisho/api/videoles.php";
+
   static String getArchiveApi(String month, String year) {
     return 'https://uruganiriro.ml/app/inyigisho/api/archivelessons.php?month=$month&year=$year';
+  }
+  static String getVideoThumbnail(String videoId){
+   
+    return "http://img.youtube.com/vi/" + videoId +"/0.jpg";
   }
 }

@@ -54,8 +54,8 @@ class Comments with ChangeNotifier {
     int lessonId,
   ) async {
     try {
-      print(lessonId.runtimeType);
-      final response = await http.post(Uri.parse(AppApi.ADDCOMMENT_API),
+     
+      await http.post(Uri.parse(AppApi.ADDCOMMENT_API),
           body: json.encode({
             "fullname": fullName,
             "leasonid": lessonId,

@@ -4,36 +4,50 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:inyigisho_app/constants/apis.dart';
 
-import 'package:inyigisho_app/models/Leason.dart';
+import 'package:inyigisho_app/models/videolesson.dart';
 
-class Leasons with ChangeNotifier {
-  List<Leason> _items = [];
-  List<Leason> _foundItems = [];
+
+
+class VideoLessons with ChangeNotifier{
+
+
+ List<VideoLeason> _items = [];
+  List<VideoLeason> _foundItems = [];
+
+    List<VideoLeason> get items {
+    return [..._items];
+  }
+
+  List<VideoLeason> get foundItems {
+    //_foundItems = _items;
+
+    return [..._foundItems];
+  }
+
 
   Future<void> fetchLasons() async {
     try {
-      final response = await http.get(Uri.parse(AppApi.LEASONS_API));
+      final response = await http.get(Uri.parse(AppApi.VIDEO_LESSONS_API));
       final Map<String, dynamic>? extractedData =
           json.decode(response.body) as Map<String, dynamic>;
-      final List<Leason> loadedLeasons = [];
+      final List<VideoLeason> loadedLeasons = [];
       if (extractedData == null) {
         _items = [];
 
         return;
       }
 
-      var decodedLeasons = extractedData['lesons'] as List<dynamic>;
-      print('Type:${decodedLeasons.runtimeType}');
+      var decodedLeasons = extractedData['videolesons'] as List<dynamic>;
+ 
 
       decodedLeasons.forEach((leason) {
         print(leason['id']);
-        loadedLeasons.add(Leason(
+        loadedLeasons.add(VideoLeason(
             id: int.parse(leason['id']),
             title: leason['title'],
-            audionUrl: leason['audio_url'],
-            description: leason['leason_description'],
+            videoUrl: leason['video_url'],
+            description: leason['description'],
             doneOn: leason['done_on'],
-            featureImageUrl: '${AppApi.ROOT_API}${leason['featureimage_url']}',
             posterName: leason['posted_by'],
             commentCount: int.parse(leason['comment_count'])));
       });
@@ -48,22 +62,12 @@ class Leasons with ChangeNotifier {
     }
   }
 
-  List<Leason> get items {
-    return [..._items];
-  }
-
-  List<Leason> get foundItems {
-    //_foundItems = _items;
-
-    return [..._foundItems];
-  }
-
-  Leason findleason(int id) {
+   VideoLeason findleason(int id) {
     return _items.firstWhere((leason) => leason.id == id);
   }
 
-  void searchLeason(String enteredKeyword) {
-    List<Leason> results = [];
+    void searchLeason(String enteredKeyword) {
+    List<VideoLeason> results = [];
     if (enteredKeyword.isEmpty) {
       results = _items;
     } else {
@@ -74,9 +78,11 @@ class Leasons with ChangeNotifier {
           .toList();
     }
 
+  
     _foundItems = [];
     _foundItems = results;
     print(foundItems);
     notifyListeners();
   }
+  
 }

@@ -14,6 +14,7 @@ class ArchiveLessons with ChangeNotifier {
   }
 
   Future<void> fetchLasons(String month, String year) async {
+     print('Url ${AppApi.getArchiveApi(month, year)}');
     try {
       final response =
           await http.get(Uri.parse(AppApi.getArchiveApi(month, year)));
@@ -28,7 +29,7 @@ class ArchiveLessons with ChangeNotifier {
       print('Type:${decodedLeasons.runtimeType}');
       final List<Leason> loadedLeasons = [];
       decodedLeasons.forEach((leason) {
-        print(leason['id']);
+       
         loadedLeasons.add(Leason(
             id: int.parse(leason['id']),
             title: leason['title'],
@@ -36,7 +37,9 @@ class ArchiveLessons with ChangeNotifier {
             description: leason['leason_description'],
             doneOn: leason['done_on'],
             featureImageUrl: '${AppApi.ROOT_API}${leason['featureimage_url']}',
-            posterName: leason['posted_by']));
+            posterName: leason['posted_by'],
+            commentCount: int.parse(leason['comment_count']))
+            );
       });
 
       _arciveItems = loadedLeasons;

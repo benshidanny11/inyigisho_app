@@ -35,6 +35,8 @@ dependencies:
   share_plus: ^2.1.4
   badges: ^2.0.1
   youtube_player_flutter: ^8.0.0
+  connectivity_plus: ^1.0.3
+  font_awesome_flutter: ^9.1.0
 
 dev_dependencies:
   flutter_test:

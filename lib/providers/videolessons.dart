@@ -81,7 +81,6 @@ class VideoLessons with ChangeNotifier{
   
     _foundItems = [];
     _foundItems = results;
-    print(foundItems);
     notifyListeners();
   }
   

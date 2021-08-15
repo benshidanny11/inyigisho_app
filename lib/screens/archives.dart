@@ -65,6 +65,10 @@ class _ArchivesState extends State<Archives> {
         setState(() {
           _isLoading = false;
         });
+      }).catchError((err){
+         setState(() {
+          _isLoading = false;
+        });
       });
       _isInit = false;
     }

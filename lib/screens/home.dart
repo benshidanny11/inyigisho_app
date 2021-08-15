@@ -12,9 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Widget> pages = [VideoLessonsScreen(),LeasonsScreen(), Archives(), Contacts()];
 
-  int _currentPage = 0;
 
   @override
   void initState() {
@@ -49,34 +47,54 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Inyigisho"),
-        actions: [
-          GestureDetector(
-              onTap: () {
-                _handleShowPopup();
-              },
-              child: Icon(Icons.share))
-        ],
-      ),
-      body: pages[_currentPage],
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.play_circle),label: 'Video lessons'),
-          BottomNavigationBarItem(icon: Icon(Icons.audiotrack),label: 'Audios lessons'),
-          BottomNavigationBarItem(icon: Icon(Icons.archive), label: 'Archive'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.contact_page), label: 'Contacts'),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentPage = index;
-          });
-        },
-        selectedItemColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.grey[600],
-        currentIndex: _currentPage,
+    return DefaultTabController(
+      length:4,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Inyigisho"),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: GestureDetector(
+                  onTap: () { 
+                  },
+                  child: Icon(Icons.share)),
+            )
+          ],
+             bottom: TabBar(
+            tabs: <Widget>[
+              Tab(
+                icon: Icon(
+                  Icons.play_circle,
+                ),
+                text: 'Video lessons',
+              ),
+              Tab(
+                icon: Icon(
+                  Icons.audiotrack,
+                ),
+                text: 'Audio lessons',
+              ),
+              Tab(
+                icon: Icon(
+                  Icons.archive
+                ),
+                text: 'Archive',
+              ),
+              Tab(
+                icon: Icon(
+                  Icons.contact_page,
+                ),
+                text: 'Contacts',
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+           VideoLessonsScreen(),LeasonsScreen(), Archives(), Contacts()
+          ],
+        ),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:inyigisho_app/providers/Years.dart';
 import 'package:inyigisho_app/providers/comments.dart';
 import 'package:inyigisho_app/providers/videolessons.dart';
 import 'package:inyigisho_app/screens/videolessondetails.dart';
+import 'package:inyigisho_app/screens/welcome.dart';
 import 'package:provider/provider.dart';
 
 import 'package:inyigisho_app/screens/home.dart';
@@ -32,10 +33,11 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           //fontFamily:'RobotoCondensed'
         ),
-        home: Home(),
+        home: WelcomePage(),
         routes: {
           RouteConstants.LeasonDetailsRoute:(ctx)=>LeasonDatails(),
-          RouteConstants.VideoLeasonDetailsRoute:(ctx)=>VideoLessonDetails()
+          RouteConstants.VideoLeasonDetailsRoute:(ctx)=>VideoLessonDetails(),
+          RouteConstants.HomeRoute:(ctx)=>Home()
         },
       ),
     );

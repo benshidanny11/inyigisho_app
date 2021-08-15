@@ -43,6 +43,14 @@ class _VideoLessonsScreenState extends State<VideoLessonsScreen> {
     super.didChangeDependencies();
   }
 
+  void handleSearch(String value) {
+
+    setState(() {
+      Provider.of<VideoLessons>(context,listen: false).searchLeason(value);
+    });
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +79,7 @@ class _VideoLessonsScreenState extends State<VideoLessonsScreen> {
                   ),
                 ),
                 onChanged: (value) {
-                 // handleSearch(value);
+                 handleSearch(value);
                 },
               ),
             ),

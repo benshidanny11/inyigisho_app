@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inyigisho_app/constants/apis.dart';
+import 'package:inyigisho_app/constants/strings.dart';
 import 'package:inyigisho_app/providers/Leasons.dart';
 import 'package:inyigisho_app/providers/comments.dart';
 import 'package:inyigisho_app/widgets/postcomment.dart';
@@ -105,7 +106,7 @@ class _LeasonDatailsState extends State<LeasonDatails> {
         setState(() {
           isLoadingComments = true;
         });
-        await Provider.of<Comments>(ctx, listen: false).fetchComments(lessId);
+        await Provider.of<Comments>(ctx, listen: false).fetchComments(lessId,Strings.LESS_TYPE_AUDIO);
         setState(() {
           isLoadingComments = false;
           viewCommentsLabel = "Hide comments";
@@ -122,7 +123,7 @@ class _LeasonDatailsState extends State<LeasonDatails> {
   void addCommentHandler(
       BuildContext ctx, String name, String comment, int lessonId) async {
     Provider.of<Comments>(context, listen: false)
-        .addComment(name, comment, lessonId)
+        .addComment(name, comment, lessonId,Strings.LESS_TYPE_AUDIO)
         .then((_) {
       setState(() {
         Provider.of<Comments>(context, listen: false).emptyComments();

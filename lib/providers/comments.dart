@@ -13,10 +13,10 @@ class Comments with ChangeNotifier {
     return [..._items];
   }
 
-  Future<void> fetchComments(int lessId) async {
+  Future<void> fetchComments(int lessId,String lessType) async {
     try {
       final response =
-          await http.get(Uri.parse('${AppApi.COMMENTS_API}$lessId'));
+          await http.get(Uri.parse('${AppApi.getCommentURL(lessId,lessType)}'));
 
       final Map<String, dynamic>? extractedData =
           json.decode(response.body) as Map<String, dynamic>;
@@ -52,6 +52,7 @@ class Comments with ChangeNotifier {
     String fullName,
     String commnetContent,
     int lessonId,
+    String lessype
   ) async {
     try {
      
@@ -59,7 +60,8 @@ class Comments with ChangeNotifier {
           body: json.encode({
             "fullname": fullName,
             "leasonid": lessonId,
-            "comment": commnetContent
+            "comment": commnetContent,
+            "lessontype":lessype
           }));
 
       notifyListeners();

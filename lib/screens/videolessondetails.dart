@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inyigisho_app/constants/strings.dart';
 import 'package:inyigisho_app/extracteddata/ExtractedStrings.dart';
 import 'package:inyigisho_app/providers/comments.dart';
 import 'package:inyigisho_app/providers/videolessons.dart';
@@ -43,7 +44,7 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
         setState(() {
           isLoadingComments = true;
         });
-        await Provider.of<Comments>(ctx, listen: false).fetchComments(lessId);
+        await Provider.of<Comments>(ctx, listen: false).fetchComments(lessId,Strings.LESS_TYPE_VIDEO);
         setState(() {
           isLoadingComments = false;
           viewCommentsLabel = "Hide comments";
@@ -60,7 +61,7 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
   void addCommentHandler(
       BuildContext ctx, String name, String comment, int lessonId) async {
     Provider.of<Comments>(context, listen: false)
-        .addComment(name, comment, lessonId)
+        .addComment(name, comment, lessonId,Strings.LESS_TYPE_VIDEO)
         .then((_) {
       setState(() {
         Provider.of<Comments>(context, listen: false).emptyComments();

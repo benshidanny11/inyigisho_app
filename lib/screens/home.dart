@@ -1,10 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:inyigisho_app/constants/strings.dart';
 import 'package:inyigisho_app/providers/Years.dart';
 import 'package:inyigisho_app/screens/archives.dart';
 import 'package:inyigisho_app/screens/contacts.dart';
 import 'package:inyigisho_app/screens/leasons.dart';
 import 'package:inyigisho_app/screens/videolessons.dart';
 import 'package:provider/provider.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,13 +18,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-
   @override
   void initState() {
     super.initState();
 
     Provider.of<Years>(context, listen: false).fetchYears();
+  }
+
+  void _openwhatsapp() async {
+    var whatsapp = Strings.PHONE_NUMBER;
+    var whatsappURlAndroid = "whatsapp://send?phone=" + whatsapp;
+    var whatappURLIos = "https://wa.me/$whatsapp";
+    if (Platform.isIOS) {
+        await launch(whatappURLIos, forceSafariVC: false);
+    } else {
+        await launch(whatsappURlAndroid);
+    }
   }
 
   void _handleShowPopup() {
@@ -48,20 +63,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length:4,
+      length: 4,
       child: Scaffold(
         appBar: AppBar(
           title: Text("Inyigisho"),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: GestureDetector(
-                  onTap: () { 
-                  },
-                  child: Icon(Icons.share)),
+              child: GestureDetector(onTap: () {}, child: Icon(Icons.share)),
             )
           ],
-             bottom: TabBar(
+          bottom: TabBar(
             tabs: <Widget>[
               Tab(
                 icon: Icon(
@@ -76,9 +88,7 @@ class _HomeState extends State<Home> {
                 text: 'Audio lessons',
               ),
               Tab(
-                icon: Icon(
-                  Icons.archive
-                ),
+                icon: Icon(Icons.archive),
                 text: 'Archive',
               ),
               Tab(
@@ -92,8 +102,22 @@ class _HomeState extends State<Home> {
         ),
         body: TabBarView(
           children: <Widget>[
-           VideoLessonsScreen(),LeasonsScreen(), Archives(), Contacts()
+            VideoLessonsScreen(),
+            LeasonsScreen(),
+            Archives(),
+            Contacts()
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Add your onPressed code here!
+            _openwhatsapp();
+          },
+          child: const Icon(
+            FontAwesomeIcons.whatsapp,
+            color: Colors.white,
+          ),
+          backgroundColor: Theme.of(context).primaryColor,
         ),
       ),
     );

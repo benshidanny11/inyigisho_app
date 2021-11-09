@@ -96,10 +96,8 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
   void initState() {
     super.initState();
    if(mounted){
-
-
     _controller = YoutubePlayerController(
-      initialVideoId: YoutubePlayer.convertUrlToId(ExtraCtedStrings.YOURUBE_URL).toString(),
+      initialVideoId: YoutubePlayer.convertUrlToId(ExtractedStrings.YOUTUBE_URL).toString(),
       flags: const YoutubePlayerFlags(
         mute: false,
         autoPlay: true,

@@ -40,7 +40,7 @@ class _WelcomePageState extends State<WelcomePage> {
           children: [
             Center(
               child: Text(
-                "Inyigisho app",
+                "Inyigisho",
                 style: TextStyle(
                     color: Colors.white,
                     shadows: [Shadow(color: Colors.grey[100] as Color)],

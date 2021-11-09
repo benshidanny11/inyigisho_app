@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:inyigisho_app/items/videolessitem.dart';
 import 'package:inyigisho_app/providers/videolessons.dart';
+import 'package:inyigisho_app/widgets/video_item.dart';
 import 'package:provider/provider.dart';
 
 class VideoLessonsScreen extends StatefulWidget {
 
-
   VideoLessonsScreen({ Key? key }) : super(key: key);
-
- 
 
   @override
   _VideoLessonsScreenState createState() => _VideoLessonsScreenState();
@@ -56,7 +54,7 @@ class _VideoLessonsScreenState extends State<VideoLessonsScreen> {
   Widget build(BuildContext context) {
 
     double screenHeight = MediaQuery.of(context).size.height;
-    final leasonData = Provider.of<VideoLessons>(context);
+    final lessonData = Provider.of<VideoLessons>(context);
 
     return SingleChildScrollView(
       child: Column(
@@ -91,14 +89,14 @@ class _VideoLessonsScreenState extends State<VideoLessonsScreen> {
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : leasonData.foundItems.length > 0
+              : lessonData.foundItems.length > 0
                   ? Container(
                       height: screenHeight * 0.7,
                       child: ListView.builder(
                         itemBuilder: (context, index) {
-                          return VideoLessonItem(leasonData.foundItems[index]);
+                          return VideoItem(lessonData.foundItems[index]);
                         },
-                        itemCount: leasonData.foundItems.length,
+                        itemCount: lessonData.foundItems.length,
                       ),
                     )
                   : Center(

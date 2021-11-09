@@ -1,3 +1,3 @@
-class ExtraCtedStrings {
-  static String YOURUBE_URL = "";
+class ExtractedStrings {
+  static String YOUTUBE_URL = "";
 }

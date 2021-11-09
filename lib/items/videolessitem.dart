@@ -8,18 +8,16 @@ import 'package:inyigisho_app/constants/routes.dart';
 import 'package:inyigisho_app/models/videolesson.dart';
 
 class VideoLessonItem extends StatelessWidget {
-  final VideoLeason leason;
-  const VideoLessonItem(this.leason);
+  final VideoLesson lesson;
+  const VideoLessonItem(this.lesson);
 
   void _handleItemClick(BuildContext context) {
-    ExtraCtedStrings.YOURUBE_URL = leason.videoUrl;
-    Navigator.of(context).pushNamed(RouteConstants.VideoLeasonDetailsRoute,
-        arguments: leason.id);
+    ExtractedStrings.YOUTUBE_URL = lesson.videoUrl;
+    Navigator.of(context).pushNamed(RouteConstants.VideoLessonDetailsRoute, arguments: lesson.id);
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return GestureDetector(
       onTap: () {
         _handleItemClick(context);
@@ -42,9 +40,7 @@ class VideoLessonItem extends StatelessWidget {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.fill,
-                              image: NetworkImage(AppApi.getVideoThumbnail(
-                                  YoutubePlayer.convertUrlToId(leason.videoUrl)
-                                      .toString())),
+                              image: NetworkImage(AppApi.getVideoThumbnail(YoutubePlayer.convertUrlToId(lesson.videoUrl).toString())),
                             ),
                           )),
                       Positioned(
@@ -63,7 +59,7 @@ class VideoLessonItem extends StatelessWidget {
                             padding: EdgeInsets.all(5),
                             color: Colors.black38,
                             child: Text(
-                              'By ${leason.posterName}',
+                              'By ${lesson.posterName}',
                               style:
                                   TextStyle(color: Colors.white, fontSize: 9),
                               textAlign: TextAlign.center,
@@ -81,7 +77,7 @@ class VideoLessonItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        leason.title.toUpperCase(),
+                        lesson.title.toUpperCase(),
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.w400),
                       ),
@@ -89,7 +85,7 @@ class VideoLessonItem extends StatelessWidget {
                         height: 6,
                       ),
                       Text(
-                        leason.description,
+                        lesson.description,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(color: Colors.grey[600], fontSize: 15),
@@ -108,7 +104,7 @@ class VideoLessonItem extends StatelessWidget {
                 Badge(
                   position: BadgePosition.topEnd(top: 2, end: 2),
                   badgeContent: Text(
-                    leason.commentCount.toString(),
+                    lesson.commentCount.toString(),
                     style: TextStyle(color: Colors.white, fontSize: 9),
                   ),
                   child: IconButton(
@@ -123,7 +119,7 @@ class VideoLessonItem extends StatelessWidget {
                 Container(
                     margin: EdgeInsets.only(left: 20, right: 10),
                     child: Text(
-                      leason.doneOn,
+                      lesson.doneOn,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           color: Theme.of(context).primaryColor, fontSize: 12),

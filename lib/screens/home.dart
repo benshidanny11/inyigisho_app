@@ -30,9 +30,9 @@ class _HomeState extends State<Home> {
     var whatsappURlAndroid = "whatsapp://send?phone=" + whatsapp;
     var whatappURLIos = "https://wa.me/$whatsapp";
     if (Platform.isIOS) {
-        await launch(whatappURLIos, forceSafariVC: false);
+      await launch(whatappURLIos, forceSafariVC: false);
     } else {
-        await launch(whatsappURlAndroid);
+      await launch(whatsappURlAndroid);
     }
   }
 

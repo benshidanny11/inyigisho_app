@@ -1,4 +1,4 @@
-class VideoLeason {
+class VideoLesson {
   final int id;
   final String title;
   final String description;
@@ -7,8 +7,7 @@ class VideoLeason {
   final String doneOn;
   int commentCount;
 
-  VideoLeason(
-      {required this.id,
+  VideoLesson({required this.id,
       required this.title,
       required this.description,
       required this.videoUrl,

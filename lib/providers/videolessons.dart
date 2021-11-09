@@ -11,14 +11,14 @@ import 'package:inyigisho_app/models/videolesson.dart';
 class VideoLessons with ChangeNotifier{
 
 
- List<VideoLeason> _items = [];
-  List<VideoLeason> _foundItems = [];
+ List<VideoLesson> _items = [];
+  List<VideoLesson> _foundItems = [];
 
-    List<VideoLeason> get items {
+    List<VideoLesson> get items {
     return [..._items];
   }
 
-  List<VideoLeason> get foundItems {
+  List<VideoLesson> get foundItems {
     //_foundItems = _items;
 
     return [..._foundItems];
@@ -30,7 +30,7 @@ class VideoLessons with ChangeNotifier{
       final response = await http.get(Uri.parse(AppApi.VIDEO_LESSONS_API));
       final Map<String, dynamic>? extractedData =
           json.decode(response.body) as Map<String, dynamic>;
-      final List<VideoLeason> loadedLeasons = [];
+      final List<VideoLesson> loadedLeasons = [];
       if (extractedData == null) {
         _items = [];
 
@@ -42,7 +42,7 @@ class VideoLessons with ChangeNotifier{
 
       decodedLeasons.forEach((leason) {
         print(leason['id']);
-        loadedLeasons.add(VideoLeason(
+        loadedLeasons.add(VideoLesson(
             id: int.parse(leason['id']),
             title: leason['title'],
             videoUrl: leason['video_url'],
@@ -62,12 +62,12 @@ class VideoLessons with ChangeNotifier{
     }
   }
 
-   VideoLeason findleason(int id) {
+   VideoLesson findleason(int id) {
     return _items.firstWhere((leason) => leason.id == id);
   }
 
     void searchLeason(String enteredKeyword) {
-    List<VideoLeason> results = [];
+    List<VideoLesson> results = [];
     if (enteredKeyword.isEmpty) {
       results = _items;
     } else {

@@ -7,7 +7,7 @@ import 'package:inyigisho_app/screens/videolessondetails.dart';
 import 'package:inyigisho_app/screens/welcome.dart';
 import 'package:provider/provider.dart';
 
-import 'package:inyigisho_app/screens/home.dart';
+import 'package:inyigisho_app/screens/home2.dart';
 import 'package:inyigisho_app/constants/routes.dart';
 import 'package:inyigisho_app/providers/Leasons.dart';
 import 'package:inyigisho_app/screens/leasondetails.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     ChangeNotifierProvider<VideoLessons>(create: (_)=>VideoLessons())
   ],
       child: MaterialApp(
-        title: 'Leasons',
+        title: 'Lessons',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           //fontFamily:'RobotoCondensed'
@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
         home: WelcomePage(),
         routes: {
           RouteConstants.LeasonDetailsRoute:(ctx)=>LeasonDatails(),
-          RouteConstants.VideoLeasonDetailsRoute:(ctx)=>VideoLessonDetails(),
-          RouteConstants.HomeRoute:(ctx)=>Home()
+          RouteConstants.VideoLessonDetailsRoute:(ctx)=>VideoLessonDetails(),
+          RouteConstants.HomeRoute:(ctx)=>Home2()
         },
       ),
     );

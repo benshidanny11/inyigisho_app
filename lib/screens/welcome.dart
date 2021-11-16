@@ -31,7 +31,7 @@ class _WelcomePageState extends State<WelcomePage> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.blue[800] as Color,
+            Colors.yellow[800] as Color,
             Theme.of(context).primaryColor,
           ],
         )),

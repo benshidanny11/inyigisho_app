@@ -12,6 +12,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+void main() => runApp(Home());
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -66,36 +68,47 @@ class _HomeState extends State<Home> {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Inyigisho"),
+          title: Text("INYIGISHO"),
+          centerTitle: true,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(30.0),
+              bottomRight: Radius.circular(30.0),
+            ),
+          ),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: GestureDetector(onTap: () {}, child: Icon(Icons.share)),
+              child: GestureDetector(onTap: () {}, child: Icon(Icons.search)),
             )
           ],
           bottom: TabBar(
+            isScrollable: false,
+            indicatorWeight: 5,
+            labelPadding: EdgeInsets.only(left: 10),
             tabs: <Widget>[
               Tab(
                 icon: Icon(
                   Icons.play_circle,
                 ),
-                text: 'Video lessons',
+                text: 'Videos',
               ),
               Tab(
                 icon: Icon(
                   Icons.audiotrack,
                 ),
-                text: 'Audio lessons',
+                text: 'Club\nIwacu',
               ),
               Tab(
                 icon: Icon(Icons.archive),
-                text: 'Archive',
+                text: 'Sangiza\nUbumenyi',
               ),
               Tab(
                 icon: Icon(
                   Icons.contact_page,
                 ),
-                text: 'Contacts',
+                text: 'Baza\nImpuguke',
               ),
             ],
           ),
@@ -103,8 +116,8 @@ class _HomeState extends State<Home> {
         body: TabBarView(
           children: <Widget>[
             VideoLessonsScreen(),
-            LeasonsScreen(),
-            Archives(),
+            VideoLessonsScreen(),
+            VideoLessonsScreen(),
             Contacts()
           ],
         ),

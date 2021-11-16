@@ -6,8 +6,6 @@ import 'package:inyigisho_app/screens/archives.dart';
 import 'package:inyigisho_app/screens/contacts.dart';
 import 'package:inyigisho_app/screens/videolessons.dart';
 
-void main() => runApp(Home2());
-
 /// This Widget is the main application widget.
 class Home2 extends StatelessWidget {
   @override

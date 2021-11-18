@@ -185,9 +185,6 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
       ),
       builder: (contex, player) => Scaffold(
         key: scaffoldKey,
-        appBar: AppBar(
-          title: Text('Inyigisho on ${loadedLeason.doneOn}'),
-        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -205,20 +202,21 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
                   children: [
                     Text(
                       loadedLeason.title,
-                      style: TextStyle(color: Colors.grey[900], fontSize: 18),
+                      style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
-                    SizedBox(
-                      height: 5,
+                    Text(
+                      "by " + loadedLeason.posterName + " • " + loadedLeason.doneOn,
+                      style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w400),
                     ),
                     Divider(),
                     SizedBox(
-                      height: 15,
+                      height: 10,
                     ),
                     Container(
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.all(5),
                       child: Text(
                         loadedLeason.description,
                         style: TextStyle(color: Colors.grey[700], fontSize: 16),

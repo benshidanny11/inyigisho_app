@@ -1,6 +1,6 @@
 {
-    "name": "inyigisho_app",
-    "short_name": "inyigisho_app",
+    "name": "Inyigisho",
+    "short_name": "Inyigisho",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

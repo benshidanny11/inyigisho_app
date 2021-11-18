@@ -59,29 +59,6 @@ class _VideoLessonsScreenState extends State<VideoLessonsScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-            height: screenHeight * .12,
-            padding: EdgeInsets.all(10),
-            child: Card(
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Search here",
-                  contentPadding:
-                      EdgeInsets.only(top: 20), // add padding to adjust text
-                  isDense: true,
-                  prefixIcon: Padding(
-                    padding:
-                        EdgeInsets.only(top: 15), // add padding to adjust icon
-                    child: Icon(Icons.search),
-                  ),
-                ),
-                onChanged: (value) {
-                 handleSearch(value);
-                },
-              ),
-            ),
-          ),
           SizedBox(
             height: 20,
           ),

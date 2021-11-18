@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:inyigisho_app/constants/strings.dart';
 import 'package:inyigisho_app/providers/Years.dart';
 import 'package:inyigisho_app/screens/archives.dart';
 import 'package:inyigisho_app/screens/contacts.dart';
-import 'package:inyigisho_app/screens/leasons.dart';
+import 'package:inyigisho_app/screens/audio_lessons.dart';
 import 'package:inyigisho_app/screens/videolessons.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -62,13 +63,25 @@ class _HomeState extends State<Home> {
     });
   }
 
+  ValueNotifier<bool> isDialOpen = ValueNotifier(false);
+
+  Future<bool> _willPopCallback() async {
+    if(isDialOpen.value){
+      isDialOpen.value = false;
+    } else {
+      return true;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return WillPopScope(child: DefaultTabController(
       length: 4,
       child: Scaffold(
         appBar: AppBar(
           title: Text("INYIGISHO"),
+          backgroundColor: Colors.orange[700],
           centerTitle: true,
           elevation: 0,
           shape: RoundedRectangleBorder(
@@ -86,6 +99,7 @@ class _HomeState extends State<Home> {
           bottom: TabBar(
             isScrollable: false,
             indicatorWeight: 5,
+            indicatorColor: Colors.white,
             labelPadding: EdgeInsets.only(left: 10),
             tabs: <Widget>[
               Tab(
@@ -96,17 +110,17 @@ class _HomeState extends State<Home> {
               ),
               Tab(
                 icon: Icon(
-                  Icons.audiotrack,
+                  Icons.people,
                 ),
                 text: 'Club\nIwacu',
               ),
               Tab(
-                icon: Icon(Icons.archive),
+                icon: Icon(Icons.share_rounded),
                 text: 'Sangiza\nUbumenyi',
               ),
               Tab(
                 icon: Icon(
-                  Icons.contact_page,
+                  Icons.question_answer,
                 ),
                 text: 'Baza\nImpuguke',
               ),
@@ -116,23 +130,56 @@ class _HomeState extends State<Home> {
         body: TabBarView(
           children: <Widget>[
             VideoLessonsScreen(),
-            VideoLessonsScreen(),
+            AudioLessonsScreen(),
             VideoLessonsScreen(),
             Contacts()
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // Add your onPressed code here!
-            _openwhatsapp();
-          },
-          child: const Icon(
-            FontAwesomeIcons.whatsapp,
-            color: Colors.white,
-          ),
-          backgroundColor: Theme.of(context).primaryColor,
+        floatingActionButton: SpeedDial(
+          animatedIcon: AnimatedIcons.menu_close,
+          openCloseDial: isDialOpen,
+          backgroundColor: Colors.orange[700],
+          overlayColor: Colors.grey,
+          overlayOpacity: 0.5,
+          spacing: 15,
+          spaceBetweenChildren: 15,
+          closeManually: true,
+          children: [
+            SpeedDialChild(
+                child: Icon(Icons.share_rounded),
+                label: 'Share',
+                backgroundColor: Colors.orange[900],
+                onTap: (){
+                  print('Share Tapped');
+                }
+            ),
+            SpeedDialChild(
+                child: Icon(Icons.speaker_phone),
+                label: 'Testimony',
+                backgroundColor: Colors.orange[900],
+                onTap: (){
+                  print('Testimony Tapped');
+                }
+            ),
+            SpeedDialChild(
+                child: Icon(Icons.archive),
+                label: 'Archive',
+                backgroundColor: Colors.orange[900],
+                onTap: (){
+                  print('Archive Tapped');
+                }
+            ),
+            SpeedDialChild(
+                child: Icon(Icons.contact_page_rounded),
+                label: 'Contact Us',
+                backgroundColor: Colors.orange[900],
+                onTap: (){
+                  print('Contact Us Tapped');
+                }
+            ),
+          ],
         ),
       ),
-    );
+    ), onWillPop: _willPopCallback );
   }
 }

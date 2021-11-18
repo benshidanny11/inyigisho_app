@@ -3,12 +3,12 @@ import 'package:inyigisho_app/items/leasonitem.dart';
 import 'package:inyigisho_app/providers/Leasons.dart';
 import 'package:provider/provider.dart';
 
-class LeasonsScreen extends StatefulWidget {
+class AudioLessonsScreen extends StatefulWidget {
   @override
-  _LeasonsState createState() => _LeasonsState();
+  _LessonsState createState() => _LessonsState();
 }
 
-class _LeasonsState extends State<LeasonsScreen> {
+class _LessonsState extends State<AudioLessonsScreen> {
   bool _isInit = true;
   bool _isLoading = false;
 
@@ -53,29 +53,6 @@ class _LeasonsState extends State<LeasonsScreen> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-            height: screenHeight * .12,
-            padding: EdgeInsets.all(10),
-            child: Card(
-              child: TextField(
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Search here",
-                  contentPadding:
-                      EdgeInsets.only(top: 20), // add padding to adjust text
-                  isDense: true,
-                  prefixIcon: Padding(
-                    padding:
-                        EdgeInsets.only(top: 15), // add padding to adjust icon
-                    child: Icon(Icons.search),
-                  ),
-                ),
-                onChanged: (value) {
-                  handleSearch(value);
-                },
-              ),
-            ),
-          ),
           SizedBox(
             height: 20,
           ),

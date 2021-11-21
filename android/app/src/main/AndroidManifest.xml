@@ -3,7 +3,7 @@
 
    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="inyigisho_app"
+        android:label="UMUHUZA"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

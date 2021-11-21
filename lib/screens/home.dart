@@ -5,13 +5,18 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:inyigisho_app/constants/strings.dart';
 import 'package:inyigisho_app/providers/Years.dart';
 import 'package:inyigisho_app/screens/archives.dart';
+import 'package:inyigisho_app/screens/club_iwacu.dart';
 import 'package:inyigisho_app/screens/contacts.dart';
 import 'package:inyigisho_app/screens/audio_lessons.dart';
+import 'package:inyigisho_app/screens/sangiza_ubumenyi.dart';
 import 'package:inyigisho_app/screens/videolessons.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'baza_impuguke.dart';
+import 'breaking_news.dart';
 
 void main() => runApp(Home());
 
@@ -77,11 +82,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(child: DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("INYIGISHO"),
-          backgroundColor: Colors.orange[700],
+          title: Text("UMUHUZA"),
+          backgroundColor: Colors.blue[700],
           centerTitle: true,
           elevation: 0,
           shape: RoundedRectangleBorder(
@@ -119,10 +124,20 @@ class _HomeState extends State<Home> {
                 text: 'Sangiza\nUbumenyi',
               ),
               Tab(
-                icon: Icon(
-                  Icons.question_answer,
+                icon: Image.asset(
+                  "assets/images/knowledge.png",
+                  width: 24.0,
+                  height: 24.0,
+                  color: Colors.grey[400],
                 ),
                 text: 'Baza\nImpuguke',
+              ),
+              Tab(
+                icon: Image.asset(
+                  "assets/images/newspaper.png",
+                  color: Colors.grey[400],
+                ),
+                text: 'Amakuru\nYihutirwa',
               ),
             ],
           ),
@@ -130,15 +145,16 @@ class _HomeState extends State<Home> {
         body: TabBarView(
           children: <Widget>[
             VideoLessonsScreen(),
-            AudioLessonsScreen(),
-            VideoLessonsScreen(),
-            Contacts()
+            ClubIwacu(),
+            SangizaUbumenyi(),
+            BazaImpuguke(),
+            BreakingNews()
           ],
         ),
         floatingActionButton: SpeedDial(
           animatedIcon: AnimatedIcons.menu_close,
           openCloseDial: isDialOpen,
-          backgroundColor: Colors.orange[700],
+          backgroundColor: Colors.blue[700],
           overlayColor: Colors.grey,
           overlayOpacity: 0.5,
           spacing: 15,
@@ -148,7 +164,7 @@ class _HomeState extends State<Home> {
             SpeedDialChild(
                 child: Icon(Icons.share_rounded),
                 label: 'Share',
-                backgroundColor: Colors.orange[900],
+                backgroundColor: Colors.blue[400],
                 onTap: (){
                   print('Share Tapped');
                 }
@@ -156,7 +172,7 @@ class _HomeState extends State<Home> {
             SpeedDialChild(
                 child: Icon(Icons.speaker_phone),
                 label: 'Testimony',
-                backgroundColor: Colors.orange[900],
+                backgroundColor: Colors.blue[400],
                 onTap: (){
                   print('Testimony Tapped');
                 }
@@ -164,7 +180,7 @@ class _HomeState extends State<Home> {
             SpeedDialChild(
                 child: Icon(Icons.archive),
                 label: 'Archive',
-                backgroundColor: Colors.orange[900],
+                backgroundColor: Colors.blue[400],
                 onTap: (){
                   print('Archive Tapped');
                 }
@@ -172,7 +188,7 @@ class _HomeState extends State<Home> {
             SpeedDialChild(
                 child: Icon(Icons.contact_page_rounded),
                 label: 'Contact Us',
-                backgroundColor: Colors.orange[900],
+                backgroundColor: Colors.blue[400],
                 onTap: (){
                   print('Contact Us Tapped');
                 }

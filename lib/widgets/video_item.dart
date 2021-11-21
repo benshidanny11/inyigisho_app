@@ -55,7 +55,7 @@ class VideoItem extends StatelessWidget {
                       ),
                     )],
                 ),
-                Column(
+                Expanded(child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Padding(
@@ -70,7 +70,9 @@ class VideoItem extends StatelessWidget {
                       child: Text(
                         videoLesson.description,
                         style: TextStyle(fontSize: 15.0),
-                        maxLines: 2,
+                        overflow: TextOverflow.fade,
+                        softWrap: false,
+                        maxLines: 3,
                       ),
                     ),
                     Padding(
@@ -81,7 +83,7 @@ class VideoItem extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
+                )),
               ],
             ),
           ),

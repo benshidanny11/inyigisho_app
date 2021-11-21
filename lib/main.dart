@@ -28,9 +28,9 @@ class MyApp extends StatelessWidget {
     ChangeNotifierProvider<VideoLessons>(create: (_)=>VideoLessons())
   ],
       child: MaterialApp(
-        title: 'Lessons',
+        title: 'UMUHUZA',
         theme: ThemeData(
-          primarySwatch: Colors.orange
+          primarySwatch: Colors.blue
           //fontFamily:'RobotoCondensed'
         ),
         home: WelcomePage(),

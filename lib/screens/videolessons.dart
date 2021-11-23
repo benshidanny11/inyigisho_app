@@ -12,11 +12,19 @@ class VideoLessonsScreen extends StatefulWidget {
   _VideoLessonsScreenState createState() => _VideoLessonsScreenState();
 }
 
-class _VideoLessonsScreenState extends State<VideoLessonsScreen> {
+class _VideoLessonsScreenState extends State<VideoLessonsScreen> with AutomaticKeepAliveClientMixin<VideoLessonsScreen> {
   bool _isInit = true;
   bool _isLoading = false;
 
-    @override
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void didChangeDependencies() {
     if (_isInit) {
       setState(() {

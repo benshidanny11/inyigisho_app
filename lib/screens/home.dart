@@ -10,8 +10,10 @@ import 'package:inyigisho_app/screens/contacts.dart';
 import 'package:inyigisho_app/screens/audio_lessons.dart';
 import 'package:inyigisho_app/screens/sangiza_ubumenyi.dart';
 import 'package:inyigisho_app/screens/videolessons.dart';
+import 'package:inyigisho_app/widgets/dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -31,17 +33,6 @@ class _HomeState extends State<Home> {
     super.initState();
 
     Provider.of<Years>(context, listen: false).fetchYears();
-  }
-
-  void _openwhatsapp() async {
-    var whatsapp = Strings.PHONE_NUMBER;
-    var whatsappURlAndroid = "whatsapp://send?phone=" + whatsapp;
-    var whatappURLIos = "https://wa.me/$whatsapp";
-    if (Platform.isIOS) {
-      await launch(whatappURLIos, forceSafariVC: false);
-    } else {
-      await launch(whatsappURlAndroid);
-    }
   }
 
   void _handleShowPopup() {
@@ -71,11 +62,7 @@ class _HomeState extends State<Home> {
   ValueNotifier<bool> isDialOpen = ValueNotifier(false);
 
   Future<bool> _willPopCallback() async {
-    if(isDialOpen.value){
-      isDialOpen.value = false;
-    } else {
-      return true;
-    }
+
     return true;
   }
 
@@ -121,7 +108,7 @@ class _HomeState extends State<Home> {
               ),
               Tab(
                 icon: Icon(Icons.share_rounded),
-                text: 'Sangiza\nUbumenyi',
+                text: 'Ubumenyi',
               ),
               Tab(
                 icon: Image.asset(
@@ -130,14 +117,14 @@ class _HomeState extends State<Home> {
                   height: 24.0,
                   color: Colors.grey[400],
                 ),
-                text: 'Baza\nImpuguke',
+                text: 'Impuguke',
               ),
               Tab(
                 icon: Image.asset(
                   "assets/images/newspaper.png",
                   color: Colors.grey[400],
                 ),
-                text: 'Amakuru\nYihutirwa',
+                text: 'Yihutirwa',
               ),
             ],
           ),
@@ -153,20 +140,20 @@ class _HomeState extends State<Home> {
         ),
         floatingActionButton: SpeedDial(
           animatedIcon: AnimatedIcons.menu_close,
-          openCloseDial: isDialOpen,
           backgroundColor: Colors.blue[700],
           overlayColor: Colors.grey,
           overlayOpacity: 0.5,
           spacing: 15,
+          label: Text("Ibikurikira"),
           spaceBetweenChildren: 15,
-          closeManually: true,
+          closeManually: false,
           children: [
             SpeedDialChild(
                 child: Icon(Icons.share_rounded),
                 label: 'Share',
                 backgroundColor: Colors.blue[400],
                 onTap: (){
-                  print('Share Tapped');
+                  Share.share('Get more at https://inyigisho.com');
                 }
             ),
             SpeedDialChild(
@@ -174,7 +161,7 @@ class _HomeState extends State<Home> {
                 label: 'Testimony',
                 backgroundColor: Colors.blue[400],
                 onTap: (){
-                  print('Testimony Tapped');
+                  showPlatformDialog(context);
                 }
             ),
             SpeedDialChild(
@@ -190,7 +177,7 @@ class _HomeState extends State<Home> {
                 label: 'Contact Us',
                 backgroundColor: Colors.blue[400],
                 onTap: (){
-                  print('Contact Us Tapped');
+                  showPlatformDialog(context);
                 }
             ),
           ],
@@ -198,4 +185,5 @@ class _HomeState extends State<Home> {
       ),
     ), onWillPop: _willPopCallback );
   }
+
 }

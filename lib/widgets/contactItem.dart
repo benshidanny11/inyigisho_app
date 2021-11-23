@@ -8,7 +8,7 @@ class ContactItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-          height: 60,
+          height: 80,
           child: Card(
             child: Row(
               children: [

@@ -2,9 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:inyigisho_app/constants/strings.dart';
 import 'package:inyigisho_app/widgets/contactItem.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ClubIwacu extends StatelessWidget {
   const ClubIwacu({Key? key}) : super(key: key);
+
+  void launchURL(String url) async {
+    if (await canLaunch(url)){
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +29,9 @@ class ClubIwacu extends StatelessWidget {
           textStyle:
           const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             child: Text('Ubusobanuro'),
-            onPressed: () {},
+            onPressed: () {
+              launchURL("https://inyigisho.com");
+            },
           ),
         ),
         Container(
@@ -31,7 +43,9 @@ class ClubIwacu extends StatelessWidget {
                 textStyle:
                 const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             child: Text('Inyongerabumenyi'),
-            onPressed: () {},
+            onPressed: () {
+              launchURL("https://inyigisho.com");
+            },
           ),
         )
       ],

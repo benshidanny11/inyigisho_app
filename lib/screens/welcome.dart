@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inyigisho_app/constants/routes.dart';
 import 'package:inyigisho_app/providers/Years.dart';
+import 'package:inyigisho_app/screens/login.dart';
 import 'package:provider/provider.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -20,10 +21,14 @@ class _WelcomePageState extends State<WelcomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    Provider.of<Years>(context, listen: false).fetchYears().then((_) {
-      Navigator.of(context).pushReplacementNamed(RouteConstants.HomeRoute);
+
+    Future.delayed(Duration.zero, () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
     });
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -31,7 +36,7 @@ class _WelcomePageState extends State<WelcomePage> {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.yellow[800] as Color,
+            Colors.blue[800] as Color,
             Theme.of(context).primaryColor,
           ],
         )),

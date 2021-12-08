@@ -28,7 +28,6 @@ class Years with ChangeNotifier {
       }
 
       extractedData.forEach((year) {
-       
         loadedYears.add(year['year'].toString());
       });
 

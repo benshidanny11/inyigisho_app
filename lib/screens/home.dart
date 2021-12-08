@@ -90,6 +90,7 @@ class _HomeState extends State<Home> {
           ],
           bottom: TabBar(
             isScrollable: false,
+            labelStyle: TextStyle(fontSize: 12.0),
             indicatorWeight: 5,
             indicatorColor: Colors.white,
             labelPadding: EdgeInsets.only(left: 10),
@@ -108,7 +109,7 @@ class _HomeState extends State<Home> {
               ),
               Tab(
                 icon: Icon(Icons.share_rounded),
-                text: 'Ubumenyi',
+                text: 'Sangiza\nUbumenyi',
               ),
               Tab(
                 icon: Image.asset(
@@ -117,14 +118,14 @@ class _HomeState extends State<Home> {
                   height: 24.0,
                   color: Colors.grey[400],
                 ),
-                text: 'Impuguke',
+                text: 'Baza\nImpuguke',
               ),
               Tab(
                 icon: Image.asset(
                   "assets/images/newspaper.png",
                   color: Colors.grey[400],
                 ),
-                text: 'Yihutirwa',
+                text: 'Amakuru\nYihutirwa',
               ),
             ],
           ),

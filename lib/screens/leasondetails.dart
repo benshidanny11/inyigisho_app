@@ -60,8 +60,7 @@ class _LeasonDatailsState extends State<LeasonDatails> {
   /// Optional
   void seekToSec(int sec) {
     Duration newPos = Duration(seconds: sec);
-    audioPlayer
-        .seek(newPos); // Jumps to the given position within the audio file
+    audioPlayer.seek(newPos); // Jumps to the given position within the audio file
   }
 
   /// Optional
@@ -120,8 +119,7 @@ class _LeasonDatailsState extends State<LeasonDatails> {
     }
   }
 
-  void addCommentHandler(
-      BuildContext ctx, String name, String comment, int lessonId) async {
+  void addCommentHandler(BuildContext ctx, String name, String comment, int lessonId) async {
     Provider.of<Comments>(context, listen: false)
         .addComment(name, comment, lessonId,Strings.LESS_TYPE_AUDIO)
         .then((_) {

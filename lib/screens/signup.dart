@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inyigisho_app/constants/apis.dart';
+import 'package:http/http.dart' as http;
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -12,7 +16,39 @@ class _SignupState extends State<SignupPage> {
 
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  late Future<String> signup;
 
+  Future<String> logUserIn() async {
+    final response = await http.post(Uri.parse(AppApi.LOGIN_ENDPOINT), body: json.encode({"email": nameController.text, "password": passwordController.text}));
+
+    if (response.statusCode == 201) {
+      return "success";
+    } else {
+      return "failed";
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    signup = logUserIn();
+  }
+
+  showProgressDialog(BuildContext context){
+    AlertDialog alert = AlertDialog(
+      content: new Row(
+        children: [
+          CircularProgressIndicator(),
+          Container(margin: EdgeInsets.only(left: 7),child:Text("Creating account... Please wait..." )),
+        ],),
+    );
+    showDialog(barrierDismissible: false,
+      context:context,
+      builder:(BuildContext context){
+        return alert;
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

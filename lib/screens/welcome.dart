@@ -23,10 +23,9 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
 
     Future.delayed(Duration.zero, () {
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => LoginPage()),
-      );
+        MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
     });
 
     return Scaffold(

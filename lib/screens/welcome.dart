@@ -3,6 +3,9 @@ import 'package:inyigisho_app/constants/routes.dart';
 import 'package:inyigisho_app/providers/Years.dart';
 import 'package:inyigisho_app/screens/login.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'home.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -13,21 +16,34 @@ class WelcomePage extends StatefulWidget {
 
 class _WelcomePageState extends State<WelcomePage> {
   bool isDataLoaded = false;
+  static const String LOGIN_STATE ='LOGIN_STATE';
 
   @override
   void initState() {
     super.initState();
+
+    SharedPreferences.getInstance().then((sharePreferences) {
+
+      bool loggedIn = sharePreferences.getBool(LOGIN_STATE) ?? false;
+
+      if(loggedIn){
+        Future.delayed(Duration.zero, () {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
+        });
+      } else {
+        Future.delayed(Duration.zero, () {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-
-    Future.delayed(Duration.zero, () {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
-    });
-
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(

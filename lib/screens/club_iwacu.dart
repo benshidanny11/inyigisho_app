@@ -3,6 +3,8 @@ import 'package:inyigisho_app/constants/strings.dart';
 import 'package:inyigisho_app/widgets/contactItem.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
+import 'package:local_auth/local_auth.dart';
 
 class ClubIwacu extends StatelessWidget {
   const ClubIwacu({Key? key}) : super(key: key);
@@ -15,6 +17,17 @@ class ClubIwacu extends StatelessWidget {
     }
   }
 
+  Future<bool> showFingerprintAuth(BuildContext context) async {
+    try {
+      var localAuth = LocalAuthentication();
+      return await localAuth.authenticate(localizedReason: 'Authenticate before accessing this content', stickyAuth: true);
+    } on Exception catch(e){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Biometric authentication has failed"),
+      ));
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +43,11 @@ class ClubIwacu extends StatelessWidget {
           const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             child: Text('Ubusobanuro'),
             onPressed: () {
-              launchURL("https://inyigisho.com");
+              showFingerprintAuth(context).then((successful) {
+                if(successful){
+                  launchURL("https://inyigisho.com");
+                }
+              });
             },
           ),
         ),
@@ -44,7 +61,11 @@ class ClubIwacu extends StatelessWidget {
                 const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             child: Text('Inyongerabumenyi'),
             onPressed: () {
-              launchURL("https://inyigisho.com");
+              showFingerprintAuth(context).then((successful) {
+                if(successful){
+                  launchURL("https://inyigisho.com");
+                }
+              });
             },
           ),
         )

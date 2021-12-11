@@ -2,7 +2,9 @@
     package="com.example.inyigisho_app">
 
    <uses-permission android:name="android.permission.INTERNET" />
-   <application
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+
+    <application
         android:label="UMUHUZA"
         android:icon="@mipmap/ic_launcher">
         <activity

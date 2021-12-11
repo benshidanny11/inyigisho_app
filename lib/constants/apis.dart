@@ -4,7 +4,7 @@ class AppApi {
   static const String ADDCOMMENT_API ='${baseApi}addcomment.php';
   static const String ROOT_API = "https://uruganiriro.ml/app/inyigisho/";
   static const String YEARS_API = '${baseApi}yearsapi.php';
-  static const String LOGIN_ENDPOINT ='${baseApi}login.php';
+  static const String LOGIN_ENDPOINT ='${baseApi}auth.php';
   static const String SIGNUP_ENDPOINT ='${baseApi}signup.php';
   static const String VIDEO_LESSONS_API = '${baseApi}videoles.php';
 

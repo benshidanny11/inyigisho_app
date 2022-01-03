@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inyigisho_app/models/Response.dart';
@@ -62,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     CircularProgressIndicator(),
                     Container(margin: EdgeInsets.only(left: 7),
-                        child:Text("Verifying... Please wait..." )),
+                        child:Text('verifying'.tr())),
                   ]
               ),
             )
@@ -94,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'Sign in',
+                          'login'.tr(),
                           style: TextStyle(fontSize: 20),
                         )),
                     Container(
@@ -104,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                         maxLength: 18,
                         validator: (text) {
                           if (text == null || text.isEmpty) {
-                            return 'Fill this field';
+                            return 'fillThisField'.tr();
                           }
                           return null;
                         },
@@ -118,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                               width: 0,
                               style: BorderStyle.none,
                             ),),
-                          labelText: 'Phone Number',
+                          labelText: 'phoneNumber'.tr(),
                         ),
                       ),
                     ),
@@ -130,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
                         maxLength: 18,
                         validator: (text) {
                           if (text == null || text.isEmpty) {
-                            return 'Fill this field';
+                            return 'fillThisField'.tr();
                           }
                           return null;
                         },
@@ -144,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                               width: 0,
                               style: BorderStyle.none,
                             ),),
-                          labelText: 'Password',
+                          labelText: 'password'.tr(),
                         ),
                       ),
                     ),
@@ -156,7 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(20))),
                           ),
-                          child: Text('Login'),
+                          child: Text('login'.tr()),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               showProgressDialog(context);
@@ -178,11 +179,11 @@ class _LoginPageState extends State<LoginPage> {
                         )),
                     Container(child: Row(
                       children: <Widget>[
-                        Text('New? Create an account?'),
+                        Text('createAccount'.tr(),),
                         FlatButton(
                           textColor: Colors.blue,
                           child: Text(
-                            'Sign Up',
+                            'signup'.tr(),
                             style: TextStyle(fontSize: 20),
                           ),
                           onPressed: () {

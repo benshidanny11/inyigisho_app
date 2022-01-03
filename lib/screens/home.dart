@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:inyigisho_app/constants/strings.dart';
@@ -35,34 +36,9 @@ class _HomeState extends State<Home> {
     Provider.of<Years>(context, listen: false).fetchYears();
   }
 
-  void _handleShowPopup() {
-    showMenu<String>(
-      context: context,
-      position: RelativeRect.fromLTRB(25.0, 25.0, 0.0,
-          0.0), //position where you want to show the menu on screen
-      items: [
-        PopupMenuItem<String>(child: const Text('menu option 1'), value: '1'),
-        PopupMenuItem<String>(child: const Text('menu option 2'), value: '2'),
-        PopupMenuItem<String>(child: const Text('menu option 3'), value: '3'),
-      ],
-      elevation: 8.0,
-    ).then<void>((itemSelected) {
-      if (itemSelected == null) return;
-
-      if (itemSelected == "1") {
-        //code here
-      } else if (itemSelected == "2") {
-        //code here
-      } else {
-        //code here
-      }
-    });
-  }
-
   ValueNotifier<bool> isDialOpen = ValueNotifier(false);
 
   Future<bool> _willPopCallback() async {
-
     return true;
   }
 
@@ -99,7 +75,7 @@ class _HomeState extends State<Home> {
                 icon: Icon(
                   Icons.play_circle,
                 ),
-                text: 'Videos',
+                text: 'video'.tr(),
               ),
               Tab(
                 icon: Icon(
@@ -109,7 +85,7 @@ class _HomeState extends State<Home> {
               ),
               Tab(
                 icon: Icon(Icons.share_rounded),
-                text: 'Sangiza\nUbumenyi',
+                text: 'share_knowledge'.tr(),
               ),
               Tab(
                 icon: Image.asset(
@@ -118,14 +94,14 @@ class _HomeState extends State<Home> {
                   height: 24.0,
                   color: Colors.grey[400],
                 ),
-                text: 'Baza\nImpuguke',
+                text: 'ask_question'.tr(),
               ),
               Tab(
                 icon: Image.asset(
                   "assets/images/newspaper.png",
                   color: Colors.grey[400],
                 ),
-                text: 'Amakuru\nYihutirwa',
+                text: 'breaking_news'.tr(),
               ),
             ],
           ),
@@ -145,13 +121,13 @@ class _HomeState extends State<Home> {
           overlayColor: Colors.grey,
           overlayOpacity: 0.5,
           spacing: 15,
-          label: Text("Ibikurikira"),
+          label: Text("more".tr()),
           spaceBetweenChildren: 15,
           closeManually: false,
           children: [
             SpeedDialChild(
                 child: Icon(Icons.share_rounded),
-                label: 'Share',
+                label: 'share'.tr(),
                 backgroundColor: Colors.blue[400],
                 onTap: (){
                   Share.share('Get more at https://inyigisho.com');
@@ -159,7 +135,7 @@ class _HomeState extends State<Home> {
             ),
             SpeedDialChild(
                 child: Icon(Icons.speaker_phone),
-                label: 'Testimony',
+                label: 'testimony'.tr(),
                 backgroundColor: Colors.blue[400],
                 onTap: (){
                   showPlatformDialog(context);
@@ -167,15 +143,15 @@ class _HomeState extends State<Home> {
             ),
             SpeedDialChild(
                 child: Icon(Icons.archive),
-                label: 'Archive',
+                label: 'archive'.tr(),
                 backgroundColor: Colors.blue[400],
                 onTap: (){
-                  print('Archive Tapped');
+
                 }
             ),
             SpeedDialChild(
                 child: Icon(Icons.contact_page_rounded),
-                label: 'Contact Us',
+                label: 'contact_us'.tr(),
                 backgroundColor: Colors.blue[400],
                 onTap: (){
                   showPlatformDialog(context);

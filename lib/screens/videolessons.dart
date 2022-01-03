@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:inyigisho_app/items/videolessitem.dart';
 import 'package:inyigisho_app/providers/videolessons.dart';
@@ -85,7 +86,7 @@ class _VideoLessonsScreenState extends State<VideoLessonsScreen> with AutomaticK
                       ),
                     )
                   : Center(
-                      child: Text("No data found"),
+                      child: Text('no_data'.tr()),
                     )
         ],
       ),

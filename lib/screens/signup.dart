@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,7 +44,7 @@ class _SignupState extends State<SignupPage> {
       content: new Row(
         children: [
           CircularProgressIndicator(),
-          Container(margin: EdgeInsets.only(left: 7),child:Text("Creating account... Please wait..." )),
+          Container(margin: EdgeInsets.only(left: 7),child:Text('creating_account'.tr())),
         ],),
     );
     showDialog(barrierDismissible: false,
@@ -65,7 +66,7 @@ class _SignupState extends State<SignupPage> {
                 Text('')
               ]
           ),
-          content: Text("Account created successfully"),
+          content: Text('account_created'.tr()),
           actions: <Widget>[
             FlatButton(
               child: Text("Okay"),
@@ -105,7 +106,7 @@ class _SignupState extends State<SignupPage> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'Create Account',
+                          'createAccount'.tr(),
                           style: TextStyle(fontSize: 20),
                         )),
                     Container(
@@ -115,7 +116,7 @@ class _SignupState extends State<SignupPage> {
                         maxLength: 25,
                         validator: (text) {
                           if (text == null || text.isEmpty || text.length < 1) {
-                            return 'Fill this field';
+                            return 'fillThisField'.tr();
                           }
                           return null;
                         },
@@ -129,7 +130,7 @@ class _SignupState extends State<SignupPage> {
                               width: 0,
                               style: BorderStyle.none,
                             ),),
-                          labelText: 'Names',
+                          labelText: 'names'.tr(),
                         ),
                       ),
                     ),
@@ -142,7 +143,7 @@ class _SignupState extends State<SignupPage> {
                         keyboardType: TextInputType.number,
                         validator: (text) {
                           if (text == null || text.isEmpty || text.length < 5) {
-                            return 'Minimum 6 characters!';
+                            return 'min_six_chars'.tr();
                           }
                           return null;
                         },
@@ -156,7 +157,7 @@ class _SignupState extends State<SignupPage> {
                               width: 0,
                               style: BorderStyle.none,
                             ),),
-                          labelText: 'Phone Number',
+                          labelText: 'phoneNumber'.tr(),
                         ),
                       ),
                     ),
@@ -168,7 +169,7 @@ class _SignupState extends State<SignupPage> {
                         controller: passwordController,
                         validator: (text) {
                           if (text == null || text.isEmpty || text.length < 7) {
-                            return '8 characters minimum';
+                            return 'min_eight_chars'.tr();
                           }
                           return null;
                         },
@@ -182,7 +183,7 @@ class _SignupState extends State<SignupPage> {
                               width: 0,
                               style: BorderStyle.none,
                             ),),
-                          labelText: 'Password',
+                          labelText: 'password'.tr(),
                         ),
                       ),
                     ),
@@ -194,7 +195,7 @@ class _SignupState extends State<SignupPage> {
                         controller: confirmPasswordController,
                         validator: (text) {
                           if (text == null || text.isEmpty || text.length < 7) {
-                            return '8 characters minimum';
+                            return 'min_eight_chars'.tr();
                           }
                           return null;
                         },
@@ -208,7 +209,7 @@ class _SignupState extends State<SignupPage> {
                               width: 0,
                               style: BorderStyle.none,
                             ),),
-                          labelText: 'Confirm Password',
+                          labelText: 'confirmPassword'.tr(),
                         ),
                       ),
                     ),
@@ -220,7 +221,7 @@ class _SignupState extends State<SignupPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(20))),
                           ),
-                          child: Text('Signup'),
+                          child: Text('signup'.tr()),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               if(passwordController.text == confirmPasswordController.text){
@@ -237,7 +238,7 @@ class _SignupState extends State<SignupPage> {
                                 });
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                  content: Text("Passwords don't match!"),
+                                  content: Text('passwordsDontMatch'.tr()),
                                 ));
                               }
                             }
@@ -246,11 +247,11 @@ class _SignupState extends State<SignupPage> {
                     Container(
                         child: Row(
                           children: <Widget>[
-                            Text('Already have an account?'),
+                            Text('alreadyHaveAccount'.tr()),
                             FlatButton(
                               textColor: Colors.blue,
                               child: Text(
-                                'Login',
+                                'login'.tr(),
                                 style: TextStyle(fontSize: 20),
                               ),
                               onPressed: () {

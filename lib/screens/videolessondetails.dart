@@ -1,4 +1,6 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
+import 'package:inyigisho_app/constants/apis.dart';
 import 'package:inyigisho_app/constants/strings.dart';
 import 'package:inyigisho_app/extracteddata/ExtractedStrings.dart';
 import 'package:inyigisho_app/providers/comments.dart';
@@ -20,7 +22,7 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
 
   bool isLoadingComments = false;
   bool isCommentsShown = false;
-  String viewCommentsLabel = "View Comments";
+  String viewCommentsLabel = 'view_comments'.tr();
 
   //Youtube variables declarations
 
@@ -37,21 +39,21 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
   void loadComments(BuildContext ctx, int lessId, int commentCount) async {
     if (commentCount == 0) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("No comments are available"),
+        content: Text('no_comments'.tr()),
       ));
     } else {
-      if (viewCommentsLabel.compareTo("View Comments") == 0) {
+      if (viewCommentsLabel.compareTo('view_comments'.tr()) == 0) {
         setState(() {
           isLoadingComments = true;
         });
         await Provider.of<Comments>(ctx, listen: false).fetchComments(lessId,Strings.LESS_TYPE_VIDEO);
         setState(() {
           isLoadingComments = false;
-          viewCommentsLabel = "Hide comments";
+          viewCommentsLabel = 'hide_comments'.tr();
         });
       } else {
         setState(() {
-          viewCommentsLabel = "View Comments";
+          viewCommentsLabel = 'view_comments'.tr();
         });
         Provider.of<Comments>(ctx, listen: false).emptyComments();
       }
@@ -72,7 +74,7 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
       Navigator.of(ctx).pop();
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(
-            "Comment was added successfully, click view comments to reload"),
+            'comment_added'.tr()),
         duration: Duration(seconds: 3),
       ));
     });
@@ -86,8 +88,7 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
   }
 
   void _handleShare(String title, String body, String lessonUrl) {
-    Share.share('$title\n\n$body\n\nListen to the lesson here: $lessonUrl',
-        subject: title);
+    Share.share('$title\n\n$body\n\n' + 'listen_to_lesson'.tr() + '${AppApi.ROOT_API}$lessonUrl', subject: title);
   }
 
 //Init state
@@ -247,7 +248,7 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
                                 handleShowCommentBottomSheet(context, leasonId);
                               },
                               icon: Icon(Icons.message_rounded),
-                              label: Text("Add comment"))
+                              label: Text('add_comment'.tr()))
                         ],
                       ),
                     ),

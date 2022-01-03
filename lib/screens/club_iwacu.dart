@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:inyigisho_app/constants/strings.dart';
 import 'package:inyigisho_app/widgets/contactItem.dart';
@@ -20,10 +21,10 @@ class ClubIwacu extends StatelessWidget {
   Future<bool> showFingerprintAuth(BuildContext context) async {
     try {
       var localAuth = LocalAuthentication();
-      return await localAuth.authenticate(localizedReason: 'Authenticate before accessing this content', stickyAuth: true);
+      return await localAuth.authenticate(localizedReason: 'authenticate_prompt'.tr(), stickyAuth: true);
     } on Exception catch(e){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Biometric authentication has failed"),
+        content: Text('biometric'.tr()),
       ));
       return false;
     }
@@ -41,7 +42,7 @@ class ClubIwacu extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
           textStyle:
           const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            child: Text('Ubusobanuro'),
+            child: Text('explanation'.tr()),
             onPressed: () {
               showFingerprintAuth(context).then((successful) {
                 if(successful){
@@ -59,7 +60,7 @@ class ClubIwacu extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                 textStyle:
                 const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            child: Text('Inyongerabumenyi'),
+            child: Text('learning'.tr()),
             onPressed: () {
               showFingerprintAuth(context).then((successful) {
                 if(successful){

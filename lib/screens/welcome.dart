@@ -31,7 +31,7 @@ class _WelcomePageState extends State<WelcomePage> {
               end: Alignment.bottomRight,
               colors: [
                 Colors.white,
-                Theme.of(context).primaryColor,
+                Colors.blue[200]!,
               ],
             )),
         child: Column(
@@ -39,26 +39,36 @@ class _WelcomePageState extends State<WelcomePage> {
           children: [
             Center(
               child: Text(
-                "U RWANDA RWAGUTSE",
+                "UMUHUZA",
                 style: TextStyle(
-                    color: Colors.blue,
+                    color: Colors.grey,
                     shadows: [Shadow(color: Colors.grey[100] as Color)],
-                    fontSize: 18),
+                    fontSize: 24),
               ),
             ),
             Center(
               child: Text(
-                "UMUHUZA",
+                "w'",
                 style: TextStyle(
                     color: Colors.grey,
+                    shadows: [Shadow(color: Colors.grey[100] as Color)],
+                    fontSize: 24),
+              ),
+            ),
+            Center(
+              child: Text(
+                "U RWANDA RWAGUTSE",
+                style: TextStyle(
+                    color: Colors.blue,
                     shadows: [Shadow(color: Colors.grey[100] as Color)],
                     fontSize: 20),
               ),
             ),
             SizedBox(height: 30),
-            Image.asset('assets/images/rda.png',
-              width: 250,
-              height: 200),
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Image.asset('assets/images/rda.png'),
+            ),
             SizedBox(height: 30),
             Center(
               child:  Row(
@@ -71,7 +81,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                     child: Text('login'.tr()),
                     onPressed: () {
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                     },
                   ),
                   SizedBox(width: 30),
@@ -82,7 +92,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                     child: Text('signup'.tr()),
                     onPressed: () {
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => SignupPage()), (Route<dynamic> route) => false);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupPage()));
                     },
                   ),
                 ],

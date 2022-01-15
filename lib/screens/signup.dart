@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:inyigisho_app/constants/apis.dart';
 import 'package:inyigisho_app/models/Response.dart';
+
+import 'login.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);
@@ -24,13 +28,18 @@ class _SignupState extends State<SignupPage> {
   late Future<Response> signup;
 
   Future<Response> signUserUp() async {
-    final response = await http.post(Uri.parse(AppApi.SIGNUP_ENDPOINT), body: json.encode(
-        {"phone_number": phoneNumberController.text,
-          "password": passwordController.text,
-          "names": nameController.text,
-        }));
-
-    return Response(response.statusCode, response.body);
+    try {
+      final response = await http.post(Uri.parse(AppApi.SIGNUP_ENDPOINT), body: json.encode(
+          {"phone_number": phoneNumberController.text,
+            "password": passwordController.text,
+            "names": nameController.text,
+          })).timeout(const Duration(seconds: 20));
+      return Response(response.statusCode, response.body);
+    } on SocketException {
+      return Response(0, "network error");
+    } on TimeoutException {
+      return Response(-1, "request timeout");
+    }
   }
 
   @override
@@ -244,7 +253,7 @@ class _SignupState extends State<SignupPage> {
                             }
                           },
                         )),
-                    Container(
+                    /*Container(
                         child: Row(
                           children: <Widget>[
                             Text('alreadyHaveAccount'.tr()),
@@ -255,12 +264,12 @@ class _SignupState extends State<SignupPage> {
                                 style: TextStyle(fontSize: 20),
                               ),
                               onPressed: () {
-                                Navigator.pop(context);
+                                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
                               },
                             )
                           ],
                           mainAxisAlignment: MainAxisAlignment.center,
-                        ))
+                        ))*/
                   ],
                 ))
         ));

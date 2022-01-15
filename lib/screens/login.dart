@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization/src/public_ext.dart';
@@ -28,9 +30,15 @@ class _LoginPageState extends State<LoginPage> {
   SharedPreferences? sharedPreferences;
 
   Future<Response> logUserIn() async {
-    final response = await http.post(Uri.parse(AppApi.LOGIN_ENDPOINT), body: json.encode({"phone_number": nameController.text, "password": passwordController.text}));
+    try {
+      final response = await http.post(Uri.parse(AppApi.LOGIN_ENDPOINT), body: json.encode({"phone_number": nameController.text, "password": passwordController.text})).timeout(const Duration(seconds: 20));
 
-    return Response(response.statusCode, response.body);
+      return Response(response.statusCode, response.body);
+    } on SocketException {
+      return Response(0, "network error");
+    } on TimeoutException {
+      return Response(-1, "request timeout");
+    }
   }
 
   @override
@@ -180,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
                             }
                           },
                         )),
-                    Container(child: Row(
+                    /*Container(child: Row(
                       children: <Widget>[
                         Text('createAccount'.tr(),),
                         FlatButton(
@@ -195,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                         )
                       ],
                       mainAxisAlignment: MainAxisAlignment.center,
-                    ))
+                    ))*/
                   ],
                 ))
         ));

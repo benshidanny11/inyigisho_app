@@ -33,5 +33,10 @@
   "explanation": "Ubusobanuro",
   "learning": "Ongera ubumenyi",
   "authenticate_prompt": "Banza wemeze n'igikumwe",
-  "biometric": "Kwemeza uwo uri we byanze"
+  "biometric": "Kwemeza uwo uri we byanze",
+  "iwacu_expl": "Intego nyamukuru yama Clubs Iwacu nukubaka ubushobozi bwinshi no kungurana ubumenyi, hagamijwe guhuza abantu n’imiryango itandukanye mubihugu batuyemo",
+  "share_knowledge_expl": "Uko usangira ubumenyi bwawe, ibitekerezo byawe nubuhanga bwawe, niko urushaho kugira uruhare mugutezimbere umuryango wawe no mukubaka isi nziza yuzuye uburumbuke aho uzaba uwambere ubyungukiramo",
+  "baza_impuguke_expl": "Baza ikibazo cyawe tugishyikirize Impuguke ibishinzwe, hanyuma tuguhuze nawe",
+  "news_expl": "Twohereze amakuru cyangwa inkuru yihutirwa, tuyimenyekanishe kandi tutisangize abo ireba bose",
+  "logout": "Gusohoka"
 }

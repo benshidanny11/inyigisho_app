@@ -58,7 +58,6 @@ class _VideoLessonsScreenState extends State<VideoLessonsScreen> with AutomaticK
 
   }
 
-
   @override
   Widget build(BuildContext context) {
 

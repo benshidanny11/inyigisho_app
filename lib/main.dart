@@ -7,7 +7,7 @@ import 'package:inyigisho_app/providers/Years.dart';
 import 'package:inyigisho_app/providers/comments.dart';
 import 'package:inyigisho_app/providers/videolessons.dart';
 import 'package:inyigisho_app/screens/videolessondetails.dart';
-import 'package:inyigisho_app/screens/welcome.dart';
+import 'package:inyigisho_app/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:inyigisho_app/providers/Leasons.dart';
@@ -19,14 +19,12 @@ Future<void> main() async {
 
   runApp(EasyLocalization(
       supportedLocales: [
-        Locale('rw', ''),
         Locale('en', ''),
         Locale('de', ''),
         Locale('nl', ''),
         Locale('es', ''),
         Locale('fr', ''),
-        Locale('sw', ''),
-        Locale('it', '')],
+        Locale('sw', '')],
       path: 'assets/translations',
       fallbackLocale: Locale(Platform.localeName.substring(0,2), ''),
       child: MyApp()
@@ -62,7 +60,7 @@ class Home extends StatelessWidget {
             primarySwatch: Colors.blue
           //fontFamily:'RobotoCondensed'
         ),
-        home: WelcomePage(),
+        home: SplashScreen(),
       ),
     );
   }

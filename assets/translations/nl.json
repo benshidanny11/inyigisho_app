@@ -22,9 +22,9 @@
   "min_eight_chars": "minimaal 8 karakters\n",
   "min_six_chars": "Minimaal 6 tekens!",
   "video": "Videos",
-  "ask_question": "Stel een vraag",
-  "breaking_news": "Belangrijk nieuws",
-  "share_knowledge": "Kennis delen",
+  "ask_question": "Stel een\nvraag",
+  "breaking_news": "Belangrijk\nnieuws",
+  "share_knowledge": "Kennis\ndelen",
   "more": "Meer",
   "share": "Deel",
   "testimony": "Getuigenis",
@@ -33,5 +33,10 @@
   "explanation": "Getuigenis",
   "learning": "Aan het leren",
   "authenticate_prompt": "Authenticate before accessing this content",
-  "biometric": "Biometrische authenticatie is mislukt"
+  "biometric": "Biometrische authenticatie is mislukt",
+  "iwacu_expl": "Het hoofddoel van de Iwacu Clubs is om meerdere capaciteiten op te bouwen en kennis uit te wisselen, met het oog op een perfecte integratie van verschillende gemeenschappen in hun land van verblijf. ",
+  "share_knowledge_expl": "Hoe meer je je kennis, je ideeën en je talenten deelt, hoe meer je deelneemt aan de ontwikkeling van je samenleving en aan de opbouw van een betere wereld vol welvaart waarvan jij de eerste zult profiteren. ",
+  "baza_impuguke_expl": "Stel je vraag en we brengen je naar de Expert en nemen contact met je op",
+  "news_expl": "Stuur ons de informatie of het dringende nieuws, we zullen ze verspreiden en delen met alle betrokkenen",
+  "logout": "Uitloggen"
 }

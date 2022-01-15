@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -10,11 +11,14 @@ import 'package:inyigisho_app/screens/club_iwacu.dart';
 import 'package:inyigisho_app/screens/contacts.dart';
 import 'package:inyigisho_app/screens/audio_lessons.dart';
 import 'package:inyigisho_app/screens/sangiza_ubumenyi.dart';
+import 'package:inyigisho_app/screens/splash_screen.dart';
 import 'package:inyigisho_app/screens/videolessons.dart';
+import 'package:inyigisho_app/screens/welcome.dart';
 import 'package:inyigisho_app/widgets/dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -32,10 +36,17 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-
+    SharedPreferences.getInstance().then((sp) {
+      sharedPreferences = sp;
+      //refresh login time
+      sharedPreferences!.setString(LOGIN_TIME, DateFormat("yyyy-MM-dd HH:mm").format(DateTime.now()).toString());
+    });
     Provider.of<Years>(context, listen: false).fetchYears();
   }
 
+  static const String LOGIN_TIME ='LOGIN_TIME';
+  static const String LOGIN_STATE ='LOGIN_STATE';
+  SharedPreferences? sharedPreferences;
   ValueNotifier<bool> isDialOpen = ValueNotifier(false);
 
   Future<bool> _willPopCallback() async {
@@ -61,7 +72,7 @@ class _HomeState extends State<Home> {
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 10),
-              child: GestureDetector(onTap: () {}, child: Icon(Icons.search)),
+              //child: GestureDetector(onTap: () {}, child: Icon(Icons.search)),
             )
           ],
           bottom: TabBar(
@@ -130,7 +141,7 @@ class _HomeState extends State<Home> {
                 label: 'share'.tr(),
                 backgroundColor: Colors.blue[400],
                 onTap: (){
-                  Share.share('Get more at https://inyigisho.com');
+                  Share.share('Download Inyigisho app at https://inyigisho.com/download');
                 }
             ),
             SpeedDialChild(
@@ -146,7 +157,7 @@ class _HomeState extends State<Home> {
                 label: 'archive'.tr(),
                 backgroundColor: Colors.blue[400],
                 onTap: (){
-
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Archives()));
                 }
             ),
             SpeedDialChild(
@@ -155,6 +166,17 @@ class _HomeState extends State<Home> {
                 backgroundColor: Colors.blue[400],
                 onTap: (){
                   showPlatformDialog(context);
+                }
+            ),
+            SpeedDialChild(
+                child: Icon(Icons.logout),
+                label: 'logout'.tr(),
+                backgroundColor: Colors.blue[400],
+                onTap: (){
+                  setState((){
+                    sharedPreferences!.setBool(LOGIN_STATE, false);
+                  });
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => WelcomePage()), (Route<dynamic> route) => false);
                 }
             ),
           ],

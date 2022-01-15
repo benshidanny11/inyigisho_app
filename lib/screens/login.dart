@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
 
   static const String LOGIN_STATE ='LOGIN_STATE';
+  static const String LOGIN_TIME ='LOGIN_TIME';
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   late Future<Response> logIn;
@@ -162,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                             if (_formKey.currentState!.validate()) {
                               showProgressDialog(context);
                               logUserIn().then((value) {
-                                Navigator.pop(context);
+                                Navigator.of(context, rootNavigator: true).pop('dialog');
                                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text(value.responseBody),
                                 ));
@@ -170,6 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                                   //save login state
                                   setState((){
                                     sharedPreferences!.setBool(LOGIN_STATE, true);
+                                    sharedPreferences!.setString(LOGIN_TIME, DateFormat("yyyy-MM-dd HH:mm").format(DateTime.now()).toString());
                                   });
                                   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
                                 }

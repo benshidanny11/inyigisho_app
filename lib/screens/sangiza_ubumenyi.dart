@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:inyigisho_app/constants/strings.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,6 +21,18 @@ class SangizaUbumenyi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Center(
+          child: Padding(
+            padding: EdgeInsets.all(20),
+            child: Text(
+              'share_knowledge_expl'.tr(),
+              style: TextStyle(
+                  color: Colors.grey[700],
+                  shadows: [Shadow(color: Colors.grey[100] as Color)],
+                  fontSize: 16),
+            ),
+          ),
+        ),
         Container(
           margin: EdgeInsets.only(top: 10),
           child: Text(

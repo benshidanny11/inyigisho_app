@@ -22,9 +22,9 @@
   "min_eight_chars": "8 caractères minimum",
   "min_six_chars": "Minimum 6 caractères !",
   "video": "Vidéos",
-  "ask_question": "Poser une question",
-  "breaking_news": "Nouvelles urgentes",
-  "share_knowledge": "Partager le savoir",
+  "ask_question": "Poser une\nquestion",
+  "breaking_news": "Nouvelles\nurgentes",
+  "share_knowledge": "Partager le\nsavoir",
   "more": "Suite",
   "share": "Partager",
   "testimony": "Témoignage",
@@ -33,5 +33,10 @@
   "explanation": "Explication",
   "learning": "Apprentissage",
   "authenticate_prompt": "Authentifiez-vous avant d'accéder à ce contenu",
-  "biometric": "L'authentification biométrique a échoué"
+  "biometric": "L'authentification biométrique a échoué",
+  "iwacu_expl": "Les Clubs Iwacu ont pour l’objectif principal, le renforcement des multiples capacités et d’echange de connaissances, en vue d’une intégration parfaite de differentes communautés dans leurs pays de résidence ",
+  "share_knowledge_expl": "Plus vous partagez vos connaissances, vos idées et vos talents , plus vous participez au developpement de votre socièté et à la construction d'un monde meilleur et plein de prosperité dont vous serez le premier bénéficiaire ",
+  "baza_impuguke_expl": "Posez votre question et nous la transmettrons à un Expert concerné et allons vous mettre en contact avec lui. ",
+  "news_expl": "Envoyez-nous les informations ou l'actualité urgente, nous allons les diffuser et partager avec tous les concernés. ",
+  "logout": "Déconnexion"
 }

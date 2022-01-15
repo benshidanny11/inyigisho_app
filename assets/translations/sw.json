@@ -23,9 +23,9 @@
   "min_eight_chars": "Vibambo 8 visivyopungua",
   "min_six_chars": "Angalau herufi 6!",
   "video": "Videos",
-  "ask_question": "Uliza Swali",
-  "breaking_news": "Breaking News",
-  "share_knowledge": "Shiriki Maarifa",
+  "ask_question": "Uliza\nSwali",
+  "breaking_news": "Breaking\nNews",
+  "share_knowledge": "Shiriki\nMaarifa",
   "more": "Zaidi",
   "share": "Shiriki",
   "testimony": "Ushuhuda",
@@ -34,5 +34,10 @@
   "explanation": "Maelezo",
   "learning": "Kujifunza",
   "authenticate_prompt": "Thibitisha kabla ya kufikia maudhui haya",
-  "biometric": "Uthibitishaji wa kibayometriki umeshindwa"
+  "biometric": "Uthibitishaji wa kibayometriki umeshindwa",
+  "iwacu_expl": "Lengo kuu la Vilabu vya Iwacu ni kujenga uwezo mbalimbali na kubadilishana ujuzi, kwa nia ya ushirikiano kamili wa jumuiya mbalimbali katika nchi wanazoishi.",
+  "share_knowledge_expl": "Kadiri unavyoshiriki maarifa yako, mawazo yako na talanta zako, ndivyo unavyoshiriki zaidi katika maendeleo ya jamii yako na katika ujenzi wa ulimwengu bora uliojaa ustawi ambao utakuwa mnufaika wa kwanza.",
+  "baza_impuguke_expl": "Uliza swali lako, na tutakupeleka kwa Mtaalamu na kuwasiliana nawe",
+  "news_expl": "Tutumie taarifa au habari za dharura, tutazisambaza na kuwashirikisha wote wanaohusika ",
+  "logout": "kuondoka"
 }

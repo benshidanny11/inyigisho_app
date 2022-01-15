@@ -11,7 +11,7 @@ void openEmail(){
 }
 
 void _launchMailClient() async {
-  var mailUrl = "mailto:info@umuhuza.com";
+  var mailUrl = "mailto:info@umuhuza-iwacu.org";
   try {
     await launch(mailUrl);
   } catch (e) {
@@ -45,7 +45,7 @@ showPlatformDialog(BuildContext context) {
     child: const Text('WhatsApp'),
     padding: EdgeInsets.all(20.0),
     onPressed: () {
-      Navigator.pop(context, true);
+      Navigator.of(context, rootNavigator: true).pop();
       showAlertDialog(context, "whatsapp");
     },
   );
@@ -53,8 +53,16 @@ showPlatformDialog(BuildContext context) {
     child: const Text('Telegram'),
     padding: EdgeInsets.all(20.0),
     onPressed: () {
-      Navigator.pop(context, true);
+      Navigator.of(context, rootNavigator: true).pop();
       showAlertDialog(context, "telegram");
+    },
+  );
+  Widget optionThree = SimpleDialogOption(
+    child: const Text('e-mail'),
+    padding: EdgeInsets.all(20.0),
+    onPressed: () {
+      Navigator.of(context, rootNavigator: true).pop();
+      _launchMailClient();
     },
   );
 
@@ -64,6 +72,7 @@ showPlatformDialog(BuildContext context) {
     children: <Widget>[
       optionOne,
       optionTwo,
+      optionThree,
     ],
   );
 
@@ -77,42 +86,29 @@ showPlatformDialog(BuildContext context) {
 }
 
 showAlertDialog(BuildContext context, String app) {
-
   // set up the list options
   Widget optionOne = SimpleDialogOption(
     child: const Text('+32 466 192 703'),
     padding: EdgeInsets.all(20.0),
     onPressed: () {
+      Navigator.of(context, rootNavigator: true).pop();
       if(app == "whatsapp") {
         _openWhatsApp('+32 466 192 703');
       } else {
         _openTelegram('+32 466 192 703');
       }
-      Navigator.pop(context, true);
     },
   );
   Widget optionTwo = SimpleDialogOption(
     child: const Text('+31 620 699903'),
     padding: EdgeInsets.all(20.0),
     onPressed: () {
+      Navigator.of(context, rootNavigator: true).pop();
       if(app == "whatsapp") {
-        _openWhatsApp('+32 466 192 703');
+        _openWhatsApp('+31 620 699903');
       } else {
-        _openTelegram('+32 466 192 703');
+        _openTelegram('+31 620 699903');
       }
-      Navigator.pop(context, true);
-    },
-  );
-  Widget optionThree = SimpleDialogOption(
-    child: const Text('+32 489 243838'),
-    padding: EdgeInsets.all(20.0),
-    onPressed: () {
-      if(app == "whatsapp") {
-        _openWhatsApp('+32 466 192 703');
-      } else {
-        _openTelegram('+32 466 192 703');
-      }
-      Navigator.pop(context, true);
     },
   );
 
@@ -122,7 +118,6 @@ showAlertDialog(BuildContext context, String app) {
     children: <Widget>[
       optionOne,
       optionTwo,
-      optionThree,
     ],
   );
 

@@ -22,9 +22,9 @@
   "min_eight_chars": "Mindestens 8 Zeichen",
   "min_six_chars": "Mindestens 6 Zeichen!",
   "video": "Videos",
-  "ask_question": "Frage stellen",
-  "breaking_news": "Aktuelle Nachrichten",
-  "share_knowledge": "Wissen teilen",
+  "ask_question": "Frage\nstellen",
+  "breaking_news": "Aktuelle\nNachrichten",
+  "share_knowledge": "Wissen\nteilen",
   "more": "Mehr",
   "share": "Teilen",
   "testimony": "Zeugnis",
@@ -33,5 +33,10 @@
   "explanation": "Erläuterung",
   "learning": "Lernen",
   "authenticate_prompt": "Authentifizierung vor dem Zugriff auf diesen Inhalt",
-  "biometric": "Biometrische Authentifizierung ist fehlgeschlagen"
+  "biometric": "Biometrische Authentifizierung ist fehlgeschlagen",
+  "iwacu_expl": "as Hauptziel der Iwacu Clubs ist die Stärkung vielfältiger Kapazitäten und der Austausch von Wissen im Hinblick auf eine perfekte Integration der verschiedenen Gemeinschaften in ihren Wohnsitzländern.",
+  "share_knowledge_expl": "Je mehr Sie Ihr Wissen, Ihre Ideen und Ihre Talente teilen, desto mehr beteiligen Sie sich an der Entwicklung Ihrer Gesellschaft und am Aufbau einer besseren Welt voller Wohlstand, von der Sie der erste Nutznießer sein werden.",
+  "baza_impuguke_expl": "Stellen Sie Ihre Frage und wir werden sie an einen relevanten Experten weiterleiten und Sie mit ihm in Kontakt bringen. ",
+  "news_expl": "Senden Sie uns Informationen oder dringende Neuigkeiten, wir verteilen sie und teilen sie mit allen Betroffenen. ",
+  "logout": "abmelden"
 }

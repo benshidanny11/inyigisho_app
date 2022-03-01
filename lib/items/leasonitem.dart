@@ -9,8 +9,7 @@ class LeasonItem extends StatelessWidget {
   const LeasonItem(this.leason);
 
   void _handleItemClick(BuildContext context) {
-    Navigator.of(context)
-        .pushNamed(RouteConstants.LeasonDetailsRoute, arguments: leason.id);
+    Navigator.of(context).pushNamed(RouteConstants.LessonDetailsRoute, arguments: leason.id);
   }
 
   @override

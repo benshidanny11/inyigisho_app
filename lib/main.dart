@@ -12,6 +12,8 @@ import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:inyigisho_app/providers/Leasons.dart';
 
+import 'constants/routes.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -27,17 +29,8 @@ Future<void> main() async {
         Locale('sw', '')],
       path: 'assets/translations',
       fallbackLocale: Locale(Platform.localeName.substring(0,2), ''),
-      child: MyApp()
+      child: Home()
   ));
-}
-
-class MyApp extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Home()
-    );
-  }
 }
 
 class Home extends StatelessWidget {
@@ -60,6 +53,9 @@ class Home extends StatelessWidget {
             primarySwatch: Colors.blue
           //fontFamily:'RobotoCondensed'
         ),
+        routes: {
+          RouteConstants.VideoLessonDetailsRoute: (context) => VideoLessonDetails(),
+        },
         home: SplashScreen(),
       ),
     );

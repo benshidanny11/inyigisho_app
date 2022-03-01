@@ -144,12 +144,12 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    final leasonId = ModalRoute.of(context)!.settings.arguments as int;
+    final lessonId = ModalRoute.of(context)!.settings.arguments as int;
 
-    final loadedLeason = Provider.of<VideoLessons>(
+    final loadedLesson = Provider.of<VideoLessons>(
       context,
       listen: false,
-    ).findleason(leasonId);
+    ).findleason(lessonId);
 
     final commentData = Provider.of<Comments>(context);
 
@@ -202,14 +202,14 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      loadedLeason.title,
+                      loadedLesson.title,
                       style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "by " + loadedLeason.posterName + " • " + loadedLeason.doneOn,
+                      "by " + loadedLesson.posterName + " • " + loadedLesson.doneOn,
                       style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w400),
                     ),
                     Divider(),
@@ -219,7 +219,7 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
                     Container(
                       padding: EdgeInsets.all(5),
                       child: Text(
-                        loadedLeason.description,
+                        loadedLesson.description,
                         style: TextStyle(color: Colors.grey[700], fontSize: 16),
                       ),
                     ),
@@ -232,10 +232,10 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
                         children: [
                           TextButton(
                             child: Text(
-                                '$viewCommentsLabel (${loadedLeason.commentCount})'),
+                                '$viewCommentsLabel (${loadedLesson.commentCount})'),
                             onPressed: () {
-                              loadComments(context, loadedLeason.id,
-                                  loadedLeason.commentCount);
+                              loadComments(context, loadedLesson.id,
+                                  loadedLesson.commentCount);
                             },
                           ),
                           VerticalDivider(
@@ -245,7 +245,7 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
                           ),
                           TextButton.icon(
                               onPressed: () {
-                                handleShowCommentBottomSheet(context, leasonId);
+                                handleShowCommentBottomSheet(context, lessonId);
                               },
                               icon: Icon(Icons.message_rounded),
                               label: Text('add_comment'.tr()))

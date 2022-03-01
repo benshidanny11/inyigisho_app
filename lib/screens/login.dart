@@ -6,6 +6,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:inyigisho_app/models/Response.dart';
 import 'package:inyigisho_app/screens/home.dart';
 import 'package:inyigisho_app/screens/signup.dart';
@@ -28,6 +29,8 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController passwordController = TextEditingController();
   late Future<Response> logIn;
   SharedPreferences? sharedPreferences;
+  final _formKey = GlobalKey<FormState>();
+  bool _obscureText = true;
 
   Future<Response> logUserIn() async {
     try {
@@ -80,7 +83,13 @@ class _LoginPageState extends State<LoginPage> {
         ));
   }
 
-  final _formKey = GlobalKey<FormState>();
+
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                     Container(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
-                        obscureText: true,
+                        obscureText: _obscureText,
                         controller: passwordController,
                         maxLength: 18,
                         validator: (text) {
@@ -146,6 +155,12 @@ class _LoginPageState extends State<LoginPage> {
                           return null;
                         },
                         decoration: InputDecoration(
+                          suffixIcon: InkWell(
+                            onTap: _toggle,
+                            child: Icon(
+                              _obscureText ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash
+                            )
+                          ),
                           filled: true,
                           contentPadding: EdgeInsets.all(16),
                           fillColor: Colors.grey[300],

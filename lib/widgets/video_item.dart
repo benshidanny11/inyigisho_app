@@ -23,70 +23,72 @@ class VideoItem extends StatelessWidget {
         onTap: (){
           _handleItemClick(context);
         },
-        child: Material(
-          child: Container(
-            margin: const EdgeInsets.all(7.0),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 3.0,
-                    spreadRadius: 0.1,
-                  ),
-                ]
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    ClipRRect(borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), bottomLeft: Radius.circular(10.0)),
-                      child: FadeInImage.assetNetwork(
-                          placeholder: 'assets/images/loading.gif', // Before image load
-                          image: AppApi.getVideoThumbnail(YoutubePlayer.convertUrlToId(videoLesson.videoUrl).toString()), // After image load
-                          height: 100,
-                          width: 100,
-                          fit: BoxFit.cover
+        child: AbsorbPointer(
+            child: Material(
+              child: Container(
+                margin: const EdgeInsets.all(7.0),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 3.0,
+                        spreadRadius: 0.1,
                       ),
-                    )],
+                    ]
                 ),
-                Expanded(child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(12.0, 2.0, 12.0, 2.0),
-                      child: Text(
-                        videoLesson.title,
-                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: <Widget>[
+                        ClipRRect(borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0), bottomLeft: Radius.circular(10.0)),
+                          child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/images/loading.gif', // Before image load
+                              image: AppApi.getVideoThumbnail(YoutubePlayer.convertUrlToId(videoLesson.videoUrl).toString()), // After image load
+                              height: 100,
+                              width: 100,
+                              fit: BoxFit.cover
+                          ),
+                        )],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 2.0),
-                      child: Text(
-                        videoLesson.description,
-                        style: TextStyle(fontSize: 15.0),
-                        overflow: TextOverflow.fade,
-                        softWrap: false,
-                        maxLines: 3,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(12.0, 2.0, 12.0, 2.0),
-                      child: Text(
-                        "by " + videoLesson.posterName + " • " + videoLesson.doneOn,
-                        style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
-                      ),
-                    ),
+                    Expanded(child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(12.0, 2.0, 12.0, 2.0),
+                          child: Text(
+                            videoLesson.title,
+                            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(12.0, 6.0, 12.0, 2.0),
+                          child: Text(
+                            videoLesson.description,
+                            style: TextStyle(fontSize: 15.0),
+                            overflow: TextOverflow.fade,
+                            softWrap: false,
+                            maxLines: 3,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(12.0, 2.0, 12.0, 2.0),
+                          child: Text(
+                            "by " + videoLesson.posterName + " • " + videoLesson.doneOn,
+                            style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w300),
+                          ),
+                        ),
+                      ],
+                    )),
                   ],
-                )),
-              ],
-            ),
-          ),
+                ),
+              ),
+            )
         )
     );
   }

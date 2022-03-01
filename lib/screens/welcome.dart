@@ -81,7 +81,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                     child: Text('login'.tr()),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPage()));
                     },
                   ),
                   SizedBox(width: 30),
@@ -92,7 +92,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     ),
                     child: Text('signup'.tr()),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupPage()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SignupPage()));
                     },
                   ),
                 ],

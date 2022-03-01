@@ -1,6 +1,5 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
-import 'package:inyigisho_app/items/videolessitem.dart';
 import 'package:inyigisho_app/providers/videolessons.dart';
 import 'package:inyigisho_app/widgets/video_item.dart';
 import 'package:provider/provider.dart';

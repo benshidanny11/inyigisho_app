@@ -54,7 +54,7 @@ class ClubIwacu extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                 textStyle:
                 const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            child: Text('explanation'.tr()),
+            child: Text('Club Iwacu'),
             onPressed: () {
               showFingerprintAuth(context).then((successful) {
                 if(successful){
@@ -72,7 +72,7 @@ class ClubIwacu extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                 textStyle:
                 const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            child: Text('learning'.tr()),
+            child: Text('Join Our Community'),
             onPressed: () {
               showFingerprintAuth(context).then((successful) {
                 if(successful){

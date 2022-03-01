@@ -25,7 +25,7 @@ class SangizaUbumenyi extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(20),
             child: Text(
-              'share_knowledge_expl'.tr(),
+              'Tanga Ubumenyi (Contact Us)',
               style: TextStyle(
                   color: Colors.grey[700],
                   shadows: [Shadow(color: Colors.grey[100] as Color)],
@@ -36,7 +36,7 @@ class SangizaUbumenyi extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: 10),
           child: Text(
-            "Share",
+            "Tanga Amakuru (Contact Us)",
             style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontSize: 15,

@@ -24,6 +24,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'baza_impuguke.dart';
 import 'breaking_news.dart';
+import 'ibikorwa_byubumuntu.dart';
 
 void main() => runApp(Home());
 
@@ -92,7 +93,7 @@ class _HomeState extends State<Home> {
                 icon: Icon(
                   Icons.people,
                 ),
-                text: 'Club\nIwacu',
+                text: 'Community\nIwacu',
               ),
               Tab(
                 icon: Icon(Icons.share_rounded),
@@ -105,7 +106,7 @@ class _HomeState extends State<Home> {
                   height: 24.0,
                   color: Colors.grey[400],
                 ),
-                text: 'ask_question'.tr(),
+                text: 'Ibikorwa \nby\'ubumuntu',
               ),
               Tab(
                 icon: Image.asset(
@@ -122,7 +123,7 @@ class _HomeState extends State<Home> {
             VideoLessonsScreen(),
             ClubIwacu(),
             SangizaUbumenyi(),
-            BazaImpuguke(),
+            IbikorwaByubumuntu(),
             BreakingNews()
           ],
         ),

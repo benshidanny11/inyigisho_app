@@ -1,9 +1,18 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class IbikorwaByubumuntu extends StatelessWidget {
   const IbikorwaByubumuntu({Key? key}) : super(key: key);
+
+  void launchURL(String url) async {
+    if (await canLaunch(url)){
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +28,7 @@ class IbikorwaByubumuntu extends StatelessWidget {
                 const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             child: Text('Imishinga'),
             onPressed: () {
-
+              launchURL("http://ejomultimedia.org/projects");
             },
           ),
         ),
@@ -33,7 +42,7 @@ class IbikorwaByubumuntu extends StatelessWidget {
                 const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             child: Text('Adoption'),
             onPressed: () {
-
+              launchURL("http://ejomultimedia.org/adoption");
             },
           ),
         )

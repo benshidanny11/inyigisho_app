@@ -7,9 +7,18 @@ import 'package:inyigisho_app/constants/strings.dart';
 import 'package:inyigisho_app/widgets/contactItem.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:inyigisho_app/widgets/dialog.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BazaImpuguke extends StatelessWidget {
   const BazaImpuguke({Key? key}) : super(key: key);
+
+  void launchURL(String url) async {
+    if (await canLaunch(url)){
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +70,18 @@ class BazaImpuguke extends StatelessWidget {
                 child: ContactItem(
                   label: "Telegram",
                   icon: FontAwesomeIcons.telegram,
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              GestureDetector(
+                onTap: () {
+                  launchURL("https://www.youtube.com/channel/UCjJh6zVo_G89sksEfW7CN1w");
+                },
+                child: ContactItem(
+                  label: "YouTube",
+                  icon: FontAwesomeIcons.youtube,
                 ),
               ),
             ],

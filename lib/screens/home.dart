@@ -170,6 +170,14 @@ class _HomeState extends State<Home> {
                 }
             ),
             SpeedDialChild(
+                child: Icon(Icons.speaker_notes),
+                label: 'ask_question'.tr(),
+                backgroundColor: Colors.blue[400],
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => BazaImpuguke()));
+                }
+            ),
+            SpeedDialChild(
                 child: Icon(Icons.logout),
                 label: 'logout'.tr(),
                 backgroundColor: Colors.blue[400],

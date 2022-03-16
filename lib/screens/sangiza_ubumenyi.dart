@@ -21,18 +21,6 @@ class SangizaUbumenyi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Center(
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              'Tanga Ubumenyi (Contact Us)',
-              style: TextStyle(
-                  color: Colors.grey[700],
-                  shadows: [Shadow(color: Colors.grey[100] as Color)],
-                  fontSize: 16),
-            ),
-          ),
-        ),
         Container(
           margin: EdgeInsets.only(top: 10),
           child: Text(

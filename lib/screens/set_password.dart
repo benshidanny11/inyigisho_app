@@ -9,33 +9,27 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:inyigisho_app/constants/apis.dart';
 import 'package:inyigisho_app/models/Response.dart';
+import 'package:inyigisho_app/screens/login.dart';
+import 'package:inyigisho_app/screens/set_email.dart';
 
-import 'login.dart';
-
-class SignupPage extends StatefulWidget {
-  const SignupPage({Key? key}) : super(key: key);
+class SetPassword extends StatefulWidget {
+  const SetPassword({Key? key}) : super(key: key);
 
   @override
   _SignupState createState() => _SignupState();
 }
 
-class _SignupState extends State<SignupPage> {
+class _SignupState extends State<SetPassword> {
 
-  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  late Future<Response> signup;
+  late Future<Response> reset;
 
-  Future<Response> signUserUp() async {
+  Future<Response> resetPasswordRequest() async {
     try {
-      final response = await http.post(Uri.parse(AppApi.SIGNUP_ENDPOINT), body: json.encode(
-          {"phone_number": phoneNumberController.text,
-            "email": emailController.text,
-            "password": passwordController.text,
-            "names": nameController.text,
-          })).timeout(const Duration(seconds: 35));
+      final response = await http.post(Uri.parse(AppApi.SET_PASSWORD_ENDPOINT), body: json.encode(
+          {"phone_number": phoneNumberController.text, "confirm_password": confirmPasswordController.text, "password": passwordController.text})).timeout(const Duration(seconds: 35));
       return Response(response.statusCode, response.body);
     } on SocketException {
       return Response(0, "network error");
@@ -47,7 +41,7 @@ class _SignupState extends State<SignupPage> {
   @override
   void initState() {
     super.initState();
-    signup = signUserUp();
+    reset = resetPasswordRequest();
   }
 
   showProgressDialog(BuildContext context){
@@ -55,7 +49,7 @@ class _SignupState extends State<SignupPage> {
       content: new Row(
         children: [
           CircularProgressIndicator(),
-          Container(margin: EdgeInsets.only(left: 7),child:Text('creating_account'.tr())),
+          Container(margin: EdgeInsets.only(left: 7),child:Text('Resetting Password... Please Wait...')),
         ],),
     );
     showDialog(barrierDismissible: false,
@@ -77,13 +71,12 @@ class _SignupState extends State<SignupPage> {
                 Text('')
               ]
           ),
-          content: Text('account_created'.tr()),
+          content: Text('New password set, you may proceed to log in'),
           actions: <Widget>[
             FlatButton(
               child: Text("Okay"),
               onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop(phoneNumberController.text);
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);
               },
             ),
           ],
@@ -107,7 +100,7 @@ class _SignupState extends State<SignupPage> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'Umuhuza',
+                          'Inyigisho',
                           style: TextStyle(
                               color: Colors.blue,
                               fontWeight: FontWeight.w500,
@@ -117,87 +110,9 @@ class _SignupState extends State<SignupPage> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'createAccount'.tr(),
+                          'Create New Password',
                           style: TextStyle(fontSize: 20),
                         )),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: TextFormField(
-                        controller: nameController,
-                        maxLength: 25,
-                        validator: (text) {
-                          if (text == null || text.isEmpty || text.length < 1) {
-                            return 'fillThisField'.tr();
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          filled: true,
-                          contentPadding: EdgeInsets.all(16),
-                          fillColor: Colors.grey[300],
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(
-                              width: 0,
-                              style: BorderStyle.none,
-                            ),),
-                          labelText: 'names'.tr(),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: TextFormField(
-                        controller: phoneNumberController,
-                        maxLength: 18,
-                        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-                        keyboardType: TextInputType.number,
-                        validator: (text) {
-                          if (text == null || text.isEmpty || text.length < 5) {
-                            return 'min_six_chars'.tr();
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          filled: true,
-                          contentPadding: EdgeInsets.all(16),
-                          fillColor: Colors.grey[300],
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(
-                              width: 0,
-                              style: BorderStyle.none,
-                            ),),
-                          labelText: 'phoneNumber'.tr(),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: TextFormField(
-                        controller: emailController,
-                        maxLength: 25,
-                        keyboardType: TextInputType.emailAddress,
-                        validator: (text) {
-                          if (text == null || text.isEmpty || RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(text)) {
-                            return 'valid email required!';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          filled: true,
-                          contentPadding: EdgeInsets.all(16),
-                          fillColor: Colors.grey[300],
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(
-                              width: 0,
-                              style: BorderStyle.none,
-                            ),),
-                          labelText: 'Email',
-                        ),
-                      ),
-                    ),
                     Container(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
@@ -251,6 +166,33 @@ class _SignupState extends State<SignupPage> {
                       ),
                     ),
                     Container(
+                      padding: EdgeInsets.all(10),
+                      child: TextFormField(
+                        controller: phoneNumberController,
+                        maxLength: 18,
+                        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                        keyboardType: TextInputType.number,
+                        validator: (text) {
+                          if (text == null || text.isEmpty || text.length < 5) {
+                            return 'min_six_chars'.tr();
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          filled: true,
+                          contentPadding: EdgeInsets.all(16),
+                          fillColor: Colors.grey[300],
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),),
+                          labelText: 'phoneNumber'.tr(),
+                        ),
+                      ),
+                    ),
+                    Container(
                         height: 70,
                         padding: EdgeInsets.all(10),
                         child: ElevatedButton(
@@ -258,12 +200,12 @@ class _SignupState extends State<SignupPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(20))),
                           ),
-                          child: Text('signup'.tr()),
+                          child: Text('Set Password'),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               if(passwordController.text == confirmPasswordController.text){
                                 showProgressDialog(context);
-                                signUserUp().then((value) {
+                                resetPasswordRequest().then((value) {
                                   Navigator.pop(context);
                                   if(value.statusCode == 201){
                                     showSuccessAlert(context);

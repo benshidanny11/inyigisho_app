@@ -88,14 +88,14 @@ showPlatformDialog(BuildContext context) {
 showAlertDialog(BuildContext context, String app) {
   // set up the list options
   Widget optionOne = SimpleDialogOption(
-    child: const Text('+32 466 192 703'),
+    child: const Text('+32 469 116 744'),
     padding: EdgeInsets.all(20.0),
     onPressed: () {
       Navigator.of(context, rootNavigator: true).pop();
       if(app == "whatsapp") {
-        _openWhatsApp('+32 466 192 703');
+        _openWhatsApp('+32 469 116 744');
       } else {
-        _openTelegram('+32 466 192 703');
+        _openTelegram('+32 469 116 744');
       }
     },
   );

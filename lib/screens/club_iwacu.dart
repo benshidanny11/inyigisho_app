@@ -58,7 +58,7 @@ class ClubIwacu extends StatelessWidget {
             onPressed: () {
               showFingerprintAuth(context).then((successful) {
                 if(successful){
-                  launchURL("https://inyigisho.com");
+                  launchURL("https://www.umuhuza-iwacu.org/club");
                 }
               });
             },
@@ -76,7 +76,7 @@ class ClubIwacu extends StatelessWidget {
             onPressed: () {
               showFingerprintAuth(context).then((successful) {
                 if(successful){
-                  launchURL("https://inyigisho.com");
+                  launchURL("https://www.umuhuza-iwacu.org/community");
                 }
               });
             },

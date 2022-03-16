@@ -7,6 +7,9 @@ class AppApi {
   static const String LOGIN_ENDPOINT ='${baseApi}auth.php';
   static const String SIGNUP_ENDPOINT ='${baseApi}signup.php';
   static const String VIDEO_LESSONS_API = '${baseApi}videoles.php';
+  static const String SET_EMAIL_ENDPOINT ='${baseApi}set_email.php';
+  static const String RESET_PASSWORD_ENDPOINT ='${baseApi}reset_password.php';
+  static const String SET_PASSWORD_ENDPOINT ='${baseApi}set_password.php';
 
   static String getArchiveApi(String month, String year) {
     return '${baseApi}archivelessons.php?month=$month&year=$year';

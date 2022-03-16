@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:inyigisho_app/models/Response.dart';
 import 'package:inyigisho_app/screens/home.dart';
+import 'package:inyigisho_app/screens/reset_password.dart';
+import 'package:inyigisho_app/screens/set_password.dart';
 import 'package:inyigisho_app/screens/signup.dart';
 import 'package:inyigisho_app/constants/apis.dart';
 import 'package:http/http.dart' as http;
@@ -34,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<Response> logUserIn() async {
     try {
-      final response = await http.post(Uri.parse(AppApi.LOGIN_ENDPOINT), body: json.encode({"phone_number": nameController.text, "password": passwordController.text})).timeout(const Duration(seconds: 20));
+      final response = await http.post(Uri.parse(AppApi.LOGIN_ENDPOINT), body: json.encode({"username": nameController.text, "password": passwordController.text})).timeout(const Duration(seconds: 20));
 
       return Response(response.statusCode, response.body);
     } on SocketException {
@@ -83,8 +85,6 @@ class _LoginPageState extends State<LoginPage> {
         ));
   }
 
-
-
   void _toggle() {
     setState(() {
       _obscureText = !_obscureText;
@@ -104,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'Inyigisho',
+                          'Umuhuza',
                           style: TextStyle(
                               color: Colors.blue,
                               fontWeight: FontWeight.w500,
@@ -138,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                               width: 0,
                               style: BorderStyle.none,
                             ),),
-                          labelText: 'phoneNumber'.tr(),
+                          labelText: 'Phone number or email',
                         ),
                       ),
                     ),
@@ -198,12 +198,14 @@ class _LoginPageState extends State<LoginPage> {
                                     sharedPreferences!.setString(LOGIN_TIME, DateFormat("yyyy-MM-dd HH:mm").format(DateTime.now()).toString());
                                   });
                                   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
+                                } else if(value.statusCode == 302){
+                                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => SetPassword()), (Route<dynamic> route) => false);
                                 }
                               });
                             }
                           },
                         )),
-                    /*Container(child: Row(
+                    Container(child: Row(
                       children: <Widget>[
                         Text('createAccount'.tr(),),
                         FlatButton(
@@ -218,7 +220,23 @@ class _LoginPageState extends State<LoginPage> {
                         )
                       ],
                       mainAxisAlignment: MainAxisAlignment.center,
-                    ))*/
+                    )),
+                    Container(child: Row(
+                      children: <Widget>[
+                        Text('Forgot Password?',),
+                        FlatButton(
+                          textColor: Colors.blue,
+                          child: Text(
+                            'Reset',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ResetPassword()));
+                          },
+                        )
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    ))
                   ],
                 ))
         ));

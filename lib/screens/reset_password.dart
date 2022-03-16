@@ -69,7 +69,7 @@ class _SignupState extends State<ResetPassword> {
                 Text('')
               ]
           ),
-          content: Text('Account password reset, check your email'),
+          content: Text('OTP token has been sent to your email'),
           actions: <Widget>[
             FlatButton(
               child: Text("Okay"),

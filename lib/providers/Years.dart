@@ -6,7 +6,10 @@ import 'package:http/http.dart' as http;
 import 'package:inyigisho_app/constants/apis.dart';
 
 class Years with ChangeNotifier {
-  List<String> _yearItems = [];
+
+  static final DateTime now = DateTime.now();
+
+  List<String> _yearItems = [now.year.toString()];
 
   List<String> get yearItems {
     return [..._yearItems];

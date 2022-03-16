@@ -49,7 +49,7 @@ class _SignupState extends State<SetPassword> {
       content: new Row(
         children: [
           CircularProgressIndicator(),
-          Container(margin: EdgeInsets.only(left: 7),child:Text('Resetting Password... Please Wait...')),
+          Container(margin: EdgeInsets.only(left: 7),child:Text('Setting New Password... Please Wait...')),
         ],),
     );
     showDialog(barrierDismissible: false,

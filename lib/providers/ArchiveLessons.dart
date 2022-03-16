@@ -25,10 +25,10 @@ class ArchiveLessons with ChangeNotifier {
         _arciveItems = [];
         return;
       }
-      var decodedLeasons = extractedData['lesons'] as List<dynamic>;
+      var decodedLessons = extractedData['lesons'] as List<dynamic>;
 
       final List<Leason> loadedLeasons = [];
-      decodedLeasons.forEach((leason) {
+      decodedLessons.forEach((leason) {
         loadedLeasons.add(Leason(
             id: int.parse(leason['id']),
             title: leason['title'],

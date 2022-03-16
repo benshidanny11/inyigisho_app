@@ -18,13 +18,14 @@ class _ArchivesState extends State<Archives> {
   String _defaultYear = "";
   bool _isInit = true;
   bool _isLoading = false;
+  static final DateTime now = DateTime.now();
 
   @override
   void initState() {
     super.initState();
     if (mounted) {
       setState(() {
-        _defaultYear = Provider.of<Years>(context, listen: false).yearItems[0];
+        _defaultYear = now.year.toString();
       });
 
       List<MonthOption> months = MonthOption.allMonths;
@@ -49,9 +50,6 @@ class _ArchivesState extends State<Archives> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    final _defaultYearForFetch =
-        Provider.of<Years>(context, listen: false).yearItems[0];
-
     var now = new DateTime.now();
     int currentMon = now.month;
    
@@ -60,7 +58,7 @@ class _ArchivesState extends State<Archives> {
         _isLoading = true;
       });
       Provider.of<ArchiveLessons>(context)
-          .fetchLasons(currentMon.toString(), _defaultYearForFetch)
+          .fetchLasons(currentMon.toString(), now.year.toString())
           .then((_) {
         setState(() {
           _isLoading = false;
@@ -96,104 +94,122 @@ class _ArchivesState extends State<Archives> {
     double screenWidth = MediaQuery.of(context).size.width;
     final years = Provider.of<Years>(context).yearItems;
 
-    final leasonData = Provider.of<ArchiveLessons>(context);
+    final lessonData = Provider.of<ArchiveLessons>(context);
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return Container(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                width: screenWidth * .35,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                  border: Border.all(
-                    color: Colors.grey[300] as Color,
-                    width: 0.7,
-                  ),
+    return Material(
+      child: Container(
+        child: Column(
+          children: [
+            AppBar(
+              title: Text("Archives"),
+              automaticallyImplyLeading: false,
+              leading: Navigator.canPop(context)
+                  ? IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                  size: 30,
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton(
-                    menuMaxHeight: 300,
-                    value: _defaultYear,
-                    items: years
-                        .map((year) => DropdownMenuItem(
-                              child: Text(year),
-                              value: year,
-                            ))
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _defaultYear = value.toString();
-                      });
-                    },
-                    hint: Text("Select year"),
-                  ),
-                ),
-              ),
-              Container(
-                width: screenWidth * .35,
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-                  border: Border.all(
-                    color: Colors.grey[300] as Color,
-                    width: 0.7,
-                  ),
-                ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton<MonthOption>(
-                    menuMaxHeight: 300,
-                    value: _defaultMonth,
-                    isExpanded: true,
-                    items: _months,
-                    onChanged: (value) {
-                      setState(() {
-                        _defaultMonth = value;
-                      });
-                    },
-                    hint: Text("Select month"),
-                  ),
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  _handleFetchArchives(_defaultYear, _defaultMonth!.monKey);
-                },
-                child: Icon(
-                  Icons.search,
-                  size: 35,
-                  color: Theme.of(context).primaryColor,
-                ),
+                onPressed: () => Navigator.of(context).pop(),
               )
-            ],
-          ),
-          Divider(),
-          SizedBox(
-            height: 5,
-          ),
-          _isLoading
-              ? Center(
-                  child: CircularProgressIndicator(),
+                  : null,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  width: screenWidth * .35,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                    border: Border.all(
+                      color: Colors.grey[300] as Color,
+                      width: 0.7,
+                    ),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(
+                      menuMaxHeight: 300,
+                      value: _defaultYear,
+                      items: years
+                          .map((year) => DropdownMenuItem(
+                        child: Text(year),
+                        value: year,
+                      ))
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _defaultYear = value.toString();
+                        });
+                      },
+                      hint: Text("Select year"),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: screenWidth * .35,
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+                    border: Border.all(
+                      color: Colors.grey[300] as Color,
+                      width: 0.7,
+                    ),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<MonthOption>(
+                      menuMaxHeight: 300,
+                      value: _defaultMonth,
+                      isExpanded: true,
+                      items: _months,
+                      onChanged: (value) {
+                        setState(() {
+                          _defaultMonth = value;
+                        });
+                      },
+                      hint: Text("Select month"),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    _handleFetchArchives(_defaultYear, _defaultMonth!.monKey);
+                  },
+                  child: Icon(
+                    Icons.search,
+                    size: 35,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 )
-              : leasonData.archiveItems.length > 0
-                  ? Container(
-                      height: screenHeight * 0.6,
-                      child: ListView.builder(
-                        itemBuilder: (context, index) {
-                          return LeasonItem(leasonData.archiveItems[index]);
-                        },
-                        itemCount: leasonData.archiveItems.length,
-                      ),
-                    )
-                  : Center(
-                      child: Text("No data found"),
-                    )
-        ],
+              ],
+            ),
+            Divider(),
+            SizedBox(
+              height: 5,
+            ),
+            _isLoading
+                ? Center(
+              child: CircularProgressIndicator(),
+            )
+                : lessonData.archiveItems.length > 0
+                ? Container(
+              height: screenHeight * 0.6,
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return LeasonItem(lessonData.archiveItems[index]);
+                },
+                itemCount: lessonData.archiveItems.length,
+              ),
+            )
+                : Center(
+              child: Text("No data found"),
+            )
+          ],
+        ),
       ),
     );
   }

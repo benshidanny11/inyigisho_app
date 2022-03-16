@@ -199,7 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                                   });
                                   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
                                 } else if(value.statusCode == 302){
-                                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => SetPassword()), (Route<dynamic> route) => false);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SetPassword(), settings: RouteSettings(arguments: nameController.text)));
                                 }
                               });
                             }

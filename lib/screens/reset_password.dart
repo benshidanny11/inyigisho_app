@@ -98,7 +98,7 @@ class _SignupState extends State<ResetPassword> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'Inyigisho',
+                          'Umuhuza',
                           style: TextStyle(
                               color: Colors.blue,
                               fontWeight: FontWeight.w500,
@@ -157,7 +157,7 @@ class _SignupState extends State<ResetPassword> {
                                     content: Text(value.responseBody),
                                   ));
                                   if(value.statusCode == 403){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SetEmail()));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SetEmail(), settings: RouteSettings(arguments: usernameController.text)));
                                   }
                                 }
                               });

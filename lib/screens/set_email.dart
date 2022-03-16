@@ -87,6 +87,9 @@ class _SignupState extends State<SetEmail> {
 
   @override
   Widget build(BuildContext context) {
+    final username = ModalRoute.of(context)!.settings.arguments as String;
+    phoneNumberController.text = username;
+
     return Scaffold(
         body: Form(
             key: _formKey,
@@ -98,7 +101,7 @@ class _SignupState extends State<SetEmail> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'Inyigisho',
+                          'Umuhuza',
                           style: TextStyle(
                               color: Colors.blue,
                               fontWeight: FontWeight.w500,
@@ -133,33 +136,6 @@ class _SignupState extends State<SetEmail> {
                               style: BorderStyle.none,
                             ),),
                           labelText: 'E-mail',
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: TextFormField(
-                        controller: phoneNumberController,
-                        maxLength: 18,
-                        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-                        keyboardType: TextInputType.number,
-                        validator: (text) {
-                          if (text == null || text.isEmpty || text.length < 5) {
-                            return 'min_six_chars'.tr();
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          filled: true,
-                          contentPadding: EdgeInsets.all(16),
-                          fillColor: Colors.grey[300],
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(
-                              width: 0,
-                              style: BorderStyle.none,
-                            ),),
-                          labelText: 'phoneNumber'.tr(),
                         ),
                       ),
                     ),

@@ -179,7 +179,7 @@ class _SignupState extends State<SignupPage> {
                         maxLength: 25,
                         keyboardType: TextInputType.emailAddress,
                         validator: (text) {
-                          if (text == null || text.isEmpty || RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(text)) {
+                          if (text == null || text.isEmpty || !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(text)) {
                             return 'valid email required!';
                           }
                           return null;

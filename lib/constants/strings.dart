@@ -1,6 +1,6 @@
 class Strings {
   static const String EMAIL = "info@umuhuza-iwacu.org";
-  static const String PHONE_NUMBER = "+250 788 220 711";
+  static const String PHONE_NUMBER = "+31 620 699 903";
   static const String WEB_SITE = "www.inyigisho.com";
   static const String FACEBOOK = "www.facebook.com/inyigisho";
   static const String TWITER = "@inyigisho";

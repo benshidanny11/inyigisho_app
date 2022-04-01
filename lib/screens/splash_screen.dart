@@ -90,7 +90,7 @@ class _SplashPageState extends State<SplashScreen> {
           children: [
             Center(
               child: Text(
-                "Inyigisho",
+                "UMUHUZA",
                 style: TextStyle(
                     color: Colors.white,
                     shadows: [Shadow(color: Colors.grey[100] as Color)],

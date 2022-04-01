@@ -34,6 +34,38 @@ class SangizaUbumenyi extends StatelessWidget {
         SizedBox(
           height: 2,
         ),
+        Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(25),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.blue[700],
+                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    textStyle:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                child: Text('Tanga Ubumenyi'),
+                onPressed: () {
+                  showPlatformDialog(context);
+                },
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(25),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.blue[700],
+                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    textStyle:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                child: Text('Tanga Amakuru'),
+                onPressed: () {
+                  showPlatformDialog(context);
+                },
+              ),
+            )
+          ],
+        ),
         Divider(),
         SizedBox(
           height: 5,
@@ -55,7 +87,7 @@ class SangizaUbumenyi extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  launchURL('tel:+32466192703');
+                  launchURL('tel:+31620699903');
                 },
                 child: ContactItem(
                   label: Strings.PHONE_NUMBER,
@@ -67,7 +99,7 @@ class SangizaUbumenyi extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  launchURL("https://inyigisho.com");
+                  launchURL("https://www.umuhuza-iwacu.org");
                 },
                 child: ContactItem(
                   label: Strings.WEB_SITE,

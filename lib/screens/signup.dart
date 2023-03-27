@@ -79,7 +79,7 @@ class _SignupState extends State<SignupPage> {
           ),
           content: Text('account_created'.tr()),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text("Okay"),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -150,7 +150,7 @@ class _SignupState extends State<SignupPage> {
                       child: TextFormField(
                         controller: phoneNumberController,
                         maxLength: 18,
-                        inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                        // inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                         keyboardType: TextInputType.number,
                         validator: (text) {
                           if (text == null || text.isEmpty || text.length < 5) {

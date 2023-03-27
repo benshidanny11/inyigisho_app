@@ -73,7 +73,7 @@ class _SignupState extends State<SetPassword> {
           ),
           content: Text('New password set, you may proceed to log in'),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text("Okay"),
               onPressed: () {
                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);

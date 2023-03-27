@@ -146,7 +146,7 @@ class _LeasonDatailsState extends State<LeasonDatails> {
   }
 
   void _handleShare(String title, String body, String lessonUrl) {
-    Share.share('$title\n\n$body\n\n' + 'listen_to_lesson'.tr() + '${AppApi.ROOT_API}$lessonUrl', subject: title);
+    Share.share('$title\n\n$body\n\n' + 'listen_to_lesson'.tr() + '${AppApi.baseApi}$lessonUrl', subject: title);
   }
 
   @override
@@ -164,7 +164,7 @@ class _LeasonDatailsState extends State<LeasonDatails> {
 
     /// Optional
     audioPlayer.setUrl(
-        '${AppApi.ROOT_API}${loadedLeason.audionUrl}'); // Triggers the onDurationChanged listener and sets the max duration string
+        '${AppApi.baseApi}${loadedLeason.audionUrl}'); // Triggers the onDurationChanged listener and sets the max duration string
     audioPlayer.onDurationChanged.listen((Duration duration) {
       setState(() {
         audioDuration = duration.inSeconds;
@@ -234,7 +234,7 @@ class _LeasonDatailsState extends State<LeasonDatails> {
                           audioPlayerState == PlayerState.PLAYING
                               ? pauseMusic()
                               : playMusic(
-                                  '${AppApi.ROOT_API}${loadedLeason.audionUrl}');
+                                  '${AppApi.baseApi}${loadedLeason.audionUrl}');
                         },
                         icon: Icon(
                           playingState == "loading"

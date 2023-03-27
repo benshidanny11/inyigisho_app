@@ -71,7 +71,7 @@ class _SignupState extends State<SetEmail> {
           ),
           content: Text('Account email successfully updated!'),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text("Okay"),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const ResetPassword()));

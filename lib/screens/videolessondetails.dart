@@ -88,7 +88,7 @@ class _VideoLessonDetailsState extends State<VideoLessonDetails> {
   }
 
   void _handleShare(String title, String body, String lessonUrl) {
-    Share.share('$title\n\n$body\n\n' + 'listen_to_lesson'.tr() + '${AppApi.ROOT_API}$lessonUrl', subject: title);
+    Share.share('$title\n\n$body\n\n' + 'listen_to_lesson'.tr() + '${AppApi.baseApi}$lessonUrl', subject: title);
   }
 
 //Init state

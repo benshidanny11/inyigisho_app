@@ -19,54 +19,68 @@ class SangizaUbumenyi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.only(top: 10),
-          child: Text(
-            "Sangiza Ubumenyi (Contact Us)",
-            style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 15,
-                fontWeight: FontWeight.bold),
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 2,
           ),
-        ),
-        SizedBox(
-          height: 2,
-        ),
-        Column(
-          children: [
-            Container(
-              margin: EdgeInsets.all(25),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.blue[700],
-                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                    textStyle:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                child: Text('Tanga Ubumenyi'),
-                onPressed: () {
-                  showPlatformDialog(context);
-                },
+          Column(
+            children: [
+               Text(
+                  "Umuganura w'urubtiruko Youth Season, ni igikorwa ngarukamwaka gihuza urubyiruko rw'ingeri zose (abaton'abakuru), hagamijwe kumenyekanisha no gusangiza Ubumenyi, Ubunararibonye, ibikorwa n'Impano za buri wese,bigatsura kandi bigashimangira ubusabane hagati y'urubyiruko n'ababyeyi, baba abatuye mu Rwanda, abatuye mumahanga, ndetse n'inshuti zabo zikomoka mu bindi bihugu.",
+                   style: TextStyle(
+                  color: Colors.grey[700],
+                  shadows: [Shadow(color: Colors.grey[100] as Color)],
+                  fontSize: 16),),
+                  SizedBox(height: 10,),
+              Container(
+                margin: EdgeInsets.all(25),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.blue[700],
+                      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                      textStyle:
+                      const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  child: Text('Talent Expo'),
+                  onPressed: () {
+                    launchURL("https://www.umuhuza-iwacu.org/youth-season-events/");
+                  },
+                ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.all(25),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.blue[700],
-                    padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                    textStyle:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                child: Text('Tanga Amakuru'),
-                onPressed: () {
-                  showPlatformDialog(context);
-                },
+              Container(
+                margin: EdgeInsets.all(25),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.blue[700],
+                      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                      textStyle:
+                      const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  child: Text('Culture Festival'),
+                  onPressed: () {
+                    launchURL("https://www.umuhuza-iwacu.org/youth-season-events/");
+                  },
+                ),
               ),
-            )
-          ],
-        ),
-      ],
+              //  Container(
+              //   margin: EdgeInsets.all(25),
+              //   child: ElevatedButton(
+              //     style: ElevatedButton.styleFrom(
+              //         primary: Colors.blue[700],
+              //         padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+              //         textStyle:
+              //         const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              //     child: Text('One minute for africa'),
+              //     onPressed: () {
+              //       launchURL("https://www.umuhuza-iwacu.org/youth-season-events/");
+              //     },
+              //   ),
+              // ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -71,7 +71,7 @@ class _SignupState extends State<ResetPassword> {
           ),
           content: Text('OTP token has been sent to your email'),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text("Okay"),
               onPressed: () {
                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => LoginPage()), (Route<dynamic> route) => false);

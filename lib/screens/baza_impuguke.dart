@@ -27,7 +27,7 @@ class BazaImpuguke extends StatelessWidget {
         body: Column(
           children: [
             AppBar(
-              title: Text("Baza Impuguke"),
+              title: Text("bikorwa by'ubumuntu"),
               automaticallyImplyLeading: false,
               leading: Navigator.canPop(context)
                   ? IconButton(

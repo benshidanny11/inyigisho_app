@@ -8,7 +8,6 @@ import 'package:inyigisho_app/constants/strings.dart';
 import 'package:inyigisho_app/providers/Years.dart';
 import 'package:inyigisho_app/screens/archives.dart';
 import 'package:inyigisho_app/screens/club_iwacu.dart';
-import 'package:inyigisho_app/screens/contacts.dart';
 import 'package:inyigisho_app/screens/audio_lessons.dart';
 import 'package:inyigisho_app/screens/sangiza_ubumenyi.dart';
 import 'package:inyigisho_app/screens/splash_screen.dart';
@@ -77,43 +76,35 @@ class _HomeState extends State<Home> {
             )
           ],
           bottom: TabBar(
-            isScrollable: false,
-            labelStyle: TextStyle(fontSize: 12.0),
-            indicatorWeight: 5,
-            indicatorColor: Colors.white,
+            isScrollable: true,
+            labelStyle: TextStyle(fontSize: 8.0),
+            indicatorWeight: 2,
+            indicatorColor: Color.fromARGB(255, 240, 239, 239),
             labelPadding: EdgeInsets.only(left: 10),
             tabs: <Widget>[
               Tab(
                 icon: Icon(
                   Icons.play_circle,
                 ),
-                text: 'video'.tr(),
+                text: 'Info & Media'.tr(),
+              ),
+               Tab(
+                icon: Icon(Icons.castle),
+                text: 'The Nation\nAcademy'.tr(),
+              ),
+                Tab(
+                icon: Icon(Icons.people),
+                text: 'Youth Season\n Day'.tr(),
+              ),
+              Tab(
+                icon: Icon(Icons.stream),
+                text: 'Umutamenwa',
               ),
               Tab(
                 icon: Icon(
                   Icons.people,
                 ),
-                text: 'Community\nIwacu',
-              ),
-              Tab(
-                icon: Icon(Icons.share_rounded),
-                text: 'share_knowledge'.tr(),
-              ),
-              Tab(
-                icon: Image.asset(
-                  "assets/images/knowledge.png",
-                  width: 24.0,
-                  height: 24.0,
-                  color: Colors.grey[400],
-                ),
-                text: 'Ibikorwa \nby\'ubumuntu',
-              ),
-              Tab(
-                icon: Image.asset(
-                  "assets/images/newspaper.png",
-                  color: Colors.grey[400],
-                ),
-                text: 'breaking_news'.tr(),
+                text: 'Iwacu\nCommunity',
               ),
             ],
           ),
@@ -121,10 +112,10 @@ class _HomeState extends State<Home> {
         body: TabBarView(
           children: <Widget>[
             VideoLessonsScreen(),
-            ClubIwacu(),
+            BreakingNews(),
             SangizaUbumenyi(),
             IbikorwaByubumuntu(),
-            BreakingNews()
+            ClubIwacu(),
           ],
         ),
         floatingActionButton: SpeedDial(
@@ -133,7 +124,6 @@ class _HomeState extends State<Home> {
           overlayColor: Colors.grey,
           overlayOpacity: 0.5,
           spacing: 15,
-          label: Text("more".tr()),
           spaceBetweenChildren: 15,
           closeManually: false,
           children: [

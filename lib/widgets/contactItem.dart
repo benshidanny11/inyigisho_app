@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ContactItem extends StatelessWidget {
   final String label;
   final IconData icon;
-  const ContactItem({Key? key,required this.label,required this.icon}) : super(key: key);
+  const ContactItem({Key? key, this.label="",required this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

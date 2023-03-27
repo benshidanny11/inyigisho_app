@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:inyigisho_app/constants/strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-void openEmail(){
+void openEmail() {
   _launchMailClient();
 }
 
@@ -14,9 +14,7 @@ void _launchMailClient() async {
   var mailUrl = "mailto:info@umuhuza-iwacu.org";
   try {
     await launch(mailUrl);
-  } catch (e) {
-
-  }
+  } catch (e) {}
 }
 
 void _openTelegram(String number) async {
@@ -38,6 +36,8 @@ void _openWhatsApp(String number) async {
     await launch(whatsappURlAndroid);
   }
 }
+
+// https://www.umuhuza-iwacu.org/youth-season-events/
 
 showPlatformDialog(BuildContext context) {
   // set up the list options
@@ -92,7 +92,7 @@ showAlertDialog(BuildContext context, String app) {
     padding: EdgeInsets.all(20.0),
     onPressed: () {
       Navigator.of(context, rootNavigator: true).pop();
-      if(app == "whatsapp") {
+      if (app == "whatsapp") {
         _openWhatsApp('+32 469 116 744');
       } else {
         _openTelegram('+32 469 116 744');
@@ -104,7 +104,7 @@ showAlertDialog(BuildContext context, String app) {
     padding: EdgeInsets.all(20.0),
     onPressed: () {
       Navigator.of(context, rootNavigator: true).pop();
-      if(app == "whatsapp") {
+      if (app == "whatsapp") {
         _openWhatsApp('+31 620 699903');
       } else {
         _openTelegram('+31 620 699903');
@@ -126,6 +126,27 @@ showAlertDialog(BuildContext context, String app) {
     context: context,
     builder: (BuildContext context) {
       return dialog;
+    },
+  );
+}
+
+showContentAlertDialog(BuildContext context, String title, String content) {
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext ctx) {
+      return AlertDialog(
+        title: Text(title),
+        content: Text(content),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+            child: Text('Ok'),
+          )
+        ],
+      );
     },
   );
 }

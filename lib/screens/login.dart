@@ -4,7 +4,6 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_localization/src/public_ext.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:inyigisho_app/models/Response.dart';
@@ -24,9 +23,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-  static const String LOGIN_STATE ='LOGIN_STATE';
-  static const String LOGIN_TIME ='LOGIN_TIME';
+  static const String LOGIN_STATE = 'LOGIN_STATE';
+  static const String LOGIN_TIME = 'LOGIN_TIME';
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   late Future<Response> logIn;
@@ -36,7 +34,13 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<Response> logUserIn() async {
     try {
-      final response = await http.post(Uri.parse(AppApi.LOGIN_ENDPOINT), body: json.encode({"username": nameController.text, "password": passwordController.text})).timeout(const Duration(seconds: 20));
+      final response = await http
+          .post(Uri.parse(AppApi.LOGIN_ENDPOINT),
+              body: json.encode({
+                "username": nameController.text,
+                "password": passwordController.text
+              }))
+          .timeout(const Duration(seconds: 20));
 
       return Response(response.statusCode, response.body);
     } on SocketException {
@@ -59,30 +63,27 @@ class _LoginPageState extends State<LoginPage> {
 
   void goToSignupPage(BuildContext context) async {
     final result = await Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const SignupPage())
-    );
+        context, MaterialPageRoute(builder: (context) => const SignupPage()));
     //set the phone number into the field
-    if(result.toString().isNotEmpty && result.toString() != "null"){
+    if (result.toString().isNotEmpty && result.toString() != "null") {
       nameController.text = result.toString();
     }
   }
 
-  showProgressDialog(BuildContext context){
-    showDialog(barrierDismissible: false,
-        context:context,
+  showProgressDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
         builder: (BuildContext context) => WillPopScope(
             onWillPop: () async => false,
             child: AlertDialog(
-              content: new Row(
-                  children: [
-                    CircularProgressIndicator(),
-                    Container(margin: EdgeInsets.only(left: 7),
-                        child:Text('verifying'.tr())),
-                  ]
-              ),
-            )
-        ));
+              content: new Row(children: [
+                CircularProgressIndicator(),
+                Container(
+                    margin: EdgeInsets.only(left: 7),
+                    child: Text('verifying'.tr())),
+              ]),
+            )));
   }
 
   void _toggle() {
@@ -137,7 +138,8 @@ class _LoginPageState extends State<LoginPage> {
                             borderSide: BorderSide(
                               width: 0,
                               style: BorderStyle.none,
-                            ),),
+                            ),
+                          ),
                           labelText: 'Phone number or email',
                         ),
                       ),
@@ -156,11 +158,10 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         decoration: InputDecoration(
                           suffixIcon: InkWell(
-                            onTap: _toggle,
-                            child: Icon(
-                              _obscureText ? FontAwesomeIcons.eye : FontAwesomeIcons.eyeSlash
-                            )
-                          ),
+                              onTap: _toggle,
+                              child: Icon(_obscureText
+                                  ? FontAwesomeIcons.eye
+                                  : FontAwesomeIcons.eyeSlash)),
                           filled: true,
                           contentPadding: EdgeInsets.all(16),
                           fillColor: Colors.grey[300],
@@ -169,7 +170,8 @@ class _LoginPageState extends State<LoginPage> {
                             borderSide: BorderSide(
                               width: 0,
                               style: BorderStyle.none,
-                            ),),
+                            ),
+                          ),
                           labelText: 'password'.tr(),
                         ),
                       ),
@@ -180,36 +182,59 @@ class _LoginPageState extends State<LoginPage> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(20))),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
                           ),
                           child: Text('login'.tr()),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               showProgressDialog(context);
                               logUserIn().then((value) {
-                                Navigator.of(context, rootNavigator: true).pop('dialog');
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                Navigator.of(context, rootNavigator: true)
+                                    .pop('dialog');
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
                                   content: Text(value.responseBody),
                                 ));
-                                if(value.statusCode == 200){
+                                if (value.statusCode == 200) {
                                   //save login state
-                                  setState((){
-                                    sharedPreferences!.setBool(LOGIN_STATE, true);
-                                    sharedPreferences!.setString(LOGIN_TIME, DateFormat("yyyy-MM-dd HH:mm").format(DateTime.now()).toString());
+                                  setState(() {
+                                    sharedPreferences!
+                                        .setBool(LOGIN_STATE, true);
+                                    sharedPreferences!.setString(
+                                        LOGIN_TIME,
+                                        DateFormat("yyyy-MM-dd HH:mm")
+                                            .format(DateTime.now())
+                                            .toString());
                                   });
-                                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home()), (Route<dynamic> route) => false);
-                                } else if(value.statusCode == 302){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SetPassword(), settings: RouteSettings(arguments: nameController.text)));
+                                  Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Home()),
+                                      (Route<dynamic> route) => false);
+                                } else if (value.statusCode == 302) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SetPassword(),
+                                          settings: RouteSettings(
+                                              arguments: nameController.text)));
                                 }
                               });
                             }
                           },
                         )),
-                    Container(child: Row(
+                    Container(
+                        child: Row(
                       children: <Widget>[
-                        Text('createAccount'.tr(),),
-                        FlatButton(
-                          textColor: Colors.blue,
+                        Text(
+                          'createAccount'.tr(),
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.blue,
+                          ),
                           child: Text(
                             'signup'.tr(),
                             style: TextStyle(fontSize: 20),
@@ -221,25 +246,32 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                       mainAxisAlignment: MainAxisAlignment.center,
                     )),
-                    Container(child: Row(
+                    Container(
+                        child: Row(
                       children: <Widget>[
-                        Text('Forgot Password?',),
-                        FlatButton(
-                          textColor: Colors.blue,
+                        Text(
+                          'Forgot Password?',
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.blue,
+                          ),
                           child: Text(
                             'Reset',
                             style: TextStyle(fontSize: 20),
                           ),
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ResetPassword()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ResetPassword()));
                           },
                         )
                       ],
                       mainAxisAlignment: MainAxisAlignment.center,
                     ))
                   ],
-                ))
-        ));
+                ))));
   }
-
 }

@@ -1,68 +1,47 @@
 import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
-import 'package:inyigisho_app/constants/strings.dart';
-import 'package:inyigisho_app/widgets/contactItem.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:inyigisho_app/widgets/dialog.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BreakingNews extends StatelessWidget {
   const BreakingNews({Key? key}) : super(key: key);
+  
+  void launchURL(String url) async {
+    if (await canLaunch(url)){
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Center(
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Text(
-              'news_expl'.tr(),
-              style: TextStyle(
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        children: [
+           Text(
+                  "Ni ikigo k'igihugu gifite icyerekezo n'inshingano byo kuba umusingi mu kunagura no Kubaka igihugu kibereye abanyagihugu bose, binyuze mu guhuza imbaraga zabo z'ingeri zose (Ubumenyi, Ubunararibonye, Ibikorwa n'Impano...). Ibyo bigakorwa hagamijwe kugera ku gihugu cy'abantu bunze ubumwe baharanira uburumbuke n'iterambere rirambye, mu Rwanda no mu karere u Rwanda ruherereyemo.",
+                   style: TextStyle(
                   color: Colors.grey[700],
                   shadows: [Shadow(color: Colors.grey[100] as Color)],
-                  fontSize: 16),
+                  fontSize: 16),),
+                  SizedBox(height: 10,),
+                 Container(
+            margin: EdgeInsets.all(25),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  primary: Colors.blue[700],
+                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  textStyle:
+                  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              child: Text('The nation academy'),
+              onPressed: () {
+                launchURL("https://www.dreams-platform.com/");
+              },
             ),
           ),
-        ),
-        Padding(padding: EdgeInsets.all(10),
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  openEmail();
-                },
-                child: ContactItem(
-                  label: Strings.EMAIL,
-                  icon: Icons.email,
-                ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              GestureDetector(
-                onTap: () {
-                  showAlertDialog(context, "whatsapp");
-                },
-                child: ContactItem(
-                  label: Strings.WHATSTAPP,
-                  icon: FontAwesomeIcons.whatsapp,
-                ),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              GestureDetector(
-                onTap: () {
-                  showAlertDialog(context, "telegram");
-                },
-                child: ContactItem(
-                  label: "Telegram",
-                  icon: FontAwesomeIcons.telegram,
-                ),
-              ),
-            ],
-          ),)
-      ],
+        ],
+      ),
     );
   }
 }

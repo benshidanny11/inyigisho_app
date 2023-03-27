@@ -26,14 +26,13 @@ class Leasons with ChangeNotifier {
       print('Type:${decodedLeasons.runtimeType}');
 
       decodedLeasons.forEach((leason) {
-        print(leason['id']);
         loadedLeasons.add(Leason(
             id: int.parse(leason['id']),
             title: leason['title'],
             audionUrl: leason['audio_url'],
             description: leason['leason_description'],
             doneOn: leason['done_on'],
-            featureImageUrl: '${AppApi.ROOT_API}${leason['featureimage_url']}',
+            featureImageUrl: '${AppApi.LEASONS_API}${leason['featureimage_url']}',
             posterName: leason['posted_by'],
             commentCount: int.parse(leason['comment_count'])));
       });

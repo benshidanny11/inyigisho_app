@@ -1,4 +1,4 @@
-package com.example.inyigisho_app
+package com.dannybensi.inyigisho_app
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine

@@ -1,6 +1,7 @@
 import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:inyigisho_app/providers/videolessons.dart';
 import 'package:provider/provider.dart';
 import '../widgets/dialog.dart';
@@ -8,7 +9,7 @@ import '../widgets/one_minute.dart';
 import '../widgets/video_list.dart';
 
 class VideoLessonsScreen extends StatefulWidget {
-  VideoLessonsScreen({Key? key}) : super(key: key);
+    VideoLessonsScreen({Key? key}) : super(key: key);
 
   @override
   _VideoLessonsScreenState createState() => _VideoLessonsScreenState();
@@ -32,7 +33,7 @@ class _VideoLessonsScreenState extends State<VideoLessonsScreen> {
             children: [
               Container(
                 margin: EdgeInsets.only(bottom: 10),
-                child: Text('Twubake u Rwanda rwagutse', style: TextStyle(
+                child: Text('lets-build-rwanda'.tr(), style: TextStyle(
                         color: Colors.grey[700],
                         shadows: [Shadow(color: Colors.grey[100] as Color)],
                         fontSize: 16),
@@ -52,8 +53,8 @@ class _VideoLessonsScreenState extends State<VideoLessonsScreen> {
                       indicatorRadius: 5.0,
                     ),
                     tabs: [
-                      Tab(text: 'Urwanda rwagutse'),
-                      Tab(text: 'One minute for africa'),
+                      Tab(text: 'big-rwanda'.tr()),
+                      Tab(text: 'one-minute-for-africa'.tr()),
                     ],
                   ),
                   Padding(

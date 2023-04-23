@@ -97,7 +97,9 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 30,),
+            Text('for_the_nation'.tr(), style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.w400, fontSize: 18),)
           ],
         ),
       ),

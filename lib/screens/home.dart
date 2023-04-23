@@ -21,7 +21,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'baza_impuguke.dart';
 import 'breaking_news.dart';
 import 'ibikorwa_byubumuntu.dart';
 
@@ -72,7 +71,9 @@ class _HomeState extends State<Home> {
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 10),
-              //child: GestureDetector(onTap: () {}, child: Icon(Icons.search)),
+              child: GestureDetector(onTap: () {
+                showLanguageMenu(context);
+              }, child: Icon(FontAwesomeIcons.language)),
             )
           ],
           bottom: TabBar(
@@ -157,14 +158,6 @@ class _HomeState extends State<Home> {
                 backgroundColor: Colors.blue[400],
                 onTap: (){
                   showPlatformDialog(context);
-                }
-            ),
-            SpeedDialChild(
-                child: Icon(Icons.speaker_notes),
-                label: 'ask_question'.tr(),
-                backgroundColor: Colors.blue[400],
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => BazaImpuguke()));
                 }
             ),
             SpeedDialChild(

@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:android_intent_plus/android_intent.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:inyigisho_app/constants/strings.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -149,4 +150,62 @@ showContentAlertDialog(BuildContext context, String title, String content) {
       );
     },
   );
+}
+
+showLanguageMenu(BuildContext context) {
+ // final FlutterLocalization _localization = FlutterLocalization.instance;
+  showMenu<String>(
+    context: context,
+    position: RelativeRect.fromLTRB(25.0, 25.0, 0.0,
+        0.0), //position where you want to show the menu on screen
+    items: [
+      PopupMenuItem<String>(child: const Text('English'), value: '1'),
+      PopupMenuItem<String>(child: const Text('French'), value: '2'),
+      PopupMenuItem<String>(child: const Text('German'), value: '3'),
+      PopupMenuItem<String>(child: const Text('Dutch'), value: '4'),
+      PopupMenuItem<String>(child: const Text('Spanish'), value: '5'),
+      PopupMenuItem<String>(child: const Text('Kiswahili'), value: '6'),
+      PopupMenuItem<String>(child: const Text('Norway'), value: '7'),
+      PopupMenuItem<String>(child: const Text('Denmark'), value: '8'),
+      PopupMenuItem<String>(child: const Text('Sweden'), value: '9'),
+      PopupMenuItem<String>(child: const Text('Kinyarwanda'), value: '10'),
+    ],
+    elevation: 8.0,
+  ).then((value) {
+    switch (value) {
+      case "1":
+       context.setLocale(Locale("en"));
+        break;
+        case "2":
+        context.setLocale(Locale("fr"));
+        break;
+        case "3":
+        context.setLocale(Locale("de"));
+        break;
+        case "4":
+        context.setLocale(Locale("nl"));
+        break;
+        case "5":
+        context.setLocale(Locale("es"));
+        break;
+        case "6":
+        context.setLocale(Locale("sw"));
+        break;
+        case "7":
+        context.setLocale(Locale("nb"));
+        break;
+         case "8":
+        context.setLocale(Locale("da"));
+        break;
+         case "9":
+        context.setLocale(Locale("sv"));
+        break;
+        case "10":
+        context.setLocale(Locale("kk"));
+        break;
+        default:
+
+        
+    }
+  });
 }

@@ -19,8 +19,7 @@ class BreakingNews extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
-           Text(
-                  "Ni ikigo k'igihugu gifite icyerekezo n'inshingano byo kuba umusingi mu kunagura no Kubaka igihugu kibereye abanyagihugu bose, binyuze mu guhuza imbaraga zabo z'ingeri zose (Ubumenyi, Ubunararibonye, Ibikorwa n'Impano...). Ibyo bigakorwa hagamijwe kugera ku gihugu cy'abantu bunze ubumwe baharanira uburumbuke n'iterambere rirambye, mu Rwanda no mu karere u Rwanda ruherereyemo.",
+           Text("national-academy-description".tr(),
                    style: TextStyle(
                   color: Colors.grey[700],
                   shadows: [Shadow(color: Colors.grey[100] as Color)],

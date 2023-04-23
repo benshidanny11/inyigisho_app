@@ -39,5 +39,21 @@
   "share_knowledge_expl": "Kadiri unavyoshiriki maarifa yako, mawazo yako na talanta zako, ndivyo unavyoshiriki zaidi katika maendeleo ya jamii yako na katika ujenzi wa ulimwengu bora uliojaa ustawi ambao utakuwa mnufaika wa kwanza.",
   "baza_impuguke_expl": "Uliza swali lako, na tutakupeleka kwa Mtaalamu na kuwasiliana nawe",
   "news_expl": "Tutumie taarifa au habari za dharura, tutazisambaza na kuwashirikisha wote wanaohusika ",
-  "logout": "kuondoka"
+  "logout": "kuondoka",
+  "lets-build-rwanda":"TUJENGE RWANDA ILIYOPELEKA",
+  "big-rwanda":"Rwanda iliyopanuliwa",
+  "get-word":"Get back your word",
+  "national-academy-description":"Ni taasisi ya kitaifa yenye dira na dhamira ya kuwa msingi wa kupanua na kujenga nchi endelevu kwa wananchi wote, kwa kuunganisha nguvu zao katika nyanja zote (Maarifa, Uzoefu, Matendo, na Vipaji...). Hii inafanywa ili kufikia nchi iliyoungana na watu wanaopigania utajiri na maendeleo endelevu, nchini Rwanda na eneo ambalo Rwanda iko.",
+  "national-academy-label": "Chuo cha taifa",
+  "youth-festival-descroption":"Umuganura w'urubyiruko (Msimu wa Vijana), ni tukio la kila mwaka linalowaleta pamoja vijana wa rika zote (vijana na wazee), likiwa na nia ya kutambulisha na kubadilishana ujuzi, uzoefu, shughuli, na vipaji vya kila mtu, kutembelea na kuimarisha uhusiano kati ya wao na wazazi wao, kwa wale wanaoishi Rwanda, wale wanaoishi nje ya nchi, na marafiki zao kutoka nchi nyingine.",
+  "talent-exipo-label":"Maonyesho ya vipaji",
+  "cultural-festival-label":"Tamasha la utamaduni",
+  "umutamenwa-description":"UMUTAMENWA Ni programu ya kitaifa iliyobuniwa kwa njia ya asili, yenye lengo la kujenga nchi inayoishi na kutii sheria, yenye sifa ya uadilifu thabiti na inazuia uanzishwaji wa sheria zisizo na haki kwa wananchi. Mpango wa UMUTAMENWA pia una jukumu la kurejesha na kurejesha bila kubatilishwa haki na mali za raia ambao wamenyimwa kwa njia yoyote ile, kwa kuzingatia kanuni kwamba haki za mtu na mali yake haziwezi kukiukwa.\nKwa hiyo, mpango wa UMUTAMENWA imejenga hifadhi ya kidijitali, iliyoundwa ili kuhifadhi kabisa hati, shuhuda, picha, au ushahidi wa mali inayohamishika na isiyohamishika ya watu na maliasili za nchi.",
+  "join-umutamenwa-label":"Jiunge na umutamenwa",
+  "iwacu-community-description":"Jumuiya ya IWACU ni Jukwaa la Wanyarwanda kutoka ndani na nje ya nchi wanaokusanyika pamoja katika nyanja tofauti za maarifa kwa lengo la kuwaunganisha watu, kufaidika na maarifa, na kujiendeleza ili kuchangia katika kuijenga Rwanda kubwa zaidi (Rwanda ya leo, na ya baadaye.)",
+  "local-community-label":"Jumuiya ya mtaa",
+  "global-community":"Jumuiya ya kimataifa",
+  "get-your-word-description":"Hekima ya asili ya kujua mabaya na mema na Neno linaloweza kuharibu au kujenga vilivyovunjika, ni vitu viwili vikubwa ambavyo Mungu alimuumba Mwanadamu. Mtu anaponyimwa haki ya kufikiri na kusema anachotaka, ananyimwa ubinadamu wake! Kwa sababu hiyo, &quot;Isubize Ijambo&quot;, ni shughuli inayolenga kutoa muda kwa kila mwananchi kutoa mawazo yake. Ikiwa ni shida, ambayo mara moja itapata suluhisho la kudumu, kabla ya kuathiri maisha ya mmiliki na nchi kwa ujumla.",
+  "for_the_nation":"KWA TAIFA ACADEMY",
+  "one-minute-for-africa":"One minute for Africa"
 }

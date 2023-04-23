@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:inyigisho_app/providers/ArchiveLessons.dart';
 import 'package:inyigisho_app/providers/Years.dart';
 import 'package:inyigisho_app/providers/comments.dart';
@@ -26,7 +25,12 @@ Future<void> main() async {
         Locale('nl', ''),
         Locale('es', ''),
         Locale('fr', ''),
-        Locale('sw', '')],
+        Locale('sw', ''),
+        Locale('kk', ''),
+        Locale('da', ''),
+        Locale('nb', ''),
+        Locale('sv', ''),
+        ],
       path: 'assets/translations',
       fallbackLocale: Locale(Platform.localeName.substring(0,2), ''),
       child: Home()

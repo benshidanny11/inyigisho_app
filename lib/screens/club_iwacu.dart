@@ -38,7 +38,7 @@ class ClubIwacu extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(20),
             child: Text(
-              "Iwacu community ni ihuriro ry'abanyarwanda b'imbere no hanze y'igihugu bahuriye mu ngaga z'abanyabumenyi butandukanye rigamije guhuza abantu, kwiyungura ubumenyi no kwiteza imbere hagamijwe gutanga umusanzu mu kubaka u Rwanda Rwagutse (U Rwanda rw'uyu munsi n'ejo hazaza).",
+              "iwacu-community-description".tr(),
               style: TextStyle(
                   color: Colors.grey[700],
                   shadows: [Shadow(color: Colors.grey[100] as Color)],
@@ -54,11 +54,11 @@ class ClubIwacu extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                 textStyle:
                 const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            child: Text('Local Community'),
+            child: Text('Local community'),
             onPressed: () {
               showFingerprintAuth(context).then((successful) {
                 if(successful){
-                  launchURL("https://www.umuhuza-iwacu.org/club");
+                  launchURL("https://www.umuhuza-iwacu.org/local-community");
                 }
               });
             },
@@ -72,7 +72,7 @@ class ClubIwacu extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                 textStyle:
                 const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-            child: Text('Global Community'),
+            child: Text('Global community'),
             onPressed: () {
               showFingerprintAuth(context).then((successful) {
                 if(successful){

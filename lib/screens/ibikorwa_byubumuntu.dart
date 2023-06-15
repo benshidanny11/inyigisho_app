@@ -42,7 +42,7 @@ class IbikorwaByubumuntu extends StatelessWidget {
                         horizontal: 50, vertical: 20),
                     textStyle: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.bold)),
-                child: Text('get-word'.tr()),
+                child: Text('Isubiza ijambo'),
                 onPressed: () {
                   showContentAlertDialog(context, 'get-word'.tr(),
                       "get-your-word-description".tr());
@@ -61,7 +61,7 @@ class IbikorwaByubumuntu extends StatelessWidget {
                         horizontal: 50, vertical: 20),
                     textStyle: const TextStyle(
                         fontSize: 18, fontWeight: FontWeight.bold)),
-                child: Text('Join umutamenwa'),
+                child: Text('Join Umutamenwa'),
                 onPressed: () {
                   launchURL("https://umutamenwa.com/");
                 },

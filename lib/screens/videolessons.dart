@@ -33,7 +33,7 @@ class _VideoLessonsScreenState extends State<VideoLessonsScreen> {
             children: [
               Container(
                 margin: EdgeInsets.only(bottom: 10),
-                child: Text('lets-build-rwanda'.tr(), style: TextStyle(
+                child: Text('TWUBAKE U RWANDA RWAGUTSE', style: TextStyle(
                         color: Colors.grey[700],
                         shadows: [Shadow(color: Colors.grey[100] as Color)],
                         fontSize: 16),
@@ -53,8 +53,8 @@ class _VideoLessonsScreenState extends State<VideoLessonsScreen> {
                       indicatorRadius: 5.0,
                     ),
                     tabs: [
-                      Tab(text: 'big-rwanda'.tr()),
-                      Tab(text: 'one-minute-for-africa'.tr()),
+                      Tab(text: 'U Rwanda Rwagutse'),
+                      Tab(text: 'One Minute For Africa'),
                     ],
                   ),
                   Padding(

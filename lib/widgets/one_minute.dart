@@ -29,7 +29,7 @@ class OneMinute extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                     textStyle:
                     const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                child: Text('get-word'.tr()),
+                child: Text('Isubiza ijambo'),
                 onPressed: () {
                   launchURL(AppApi.YOUTUBE_LINK);
                 },
@@ -42,7 +42,7 @@ class OneMinute extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                       textStyle:
                       const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  child: Text('one-minute-for-africa'.tr()),
+                  child: Text('One Minute For Africa'),
                   onPressed: () {
                     launchURL("https://www.umuhuza-iwacu.org/youth-season-events/");
                   },

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:inyigisho_app/constants/routes.dart';
 import 'package:inyigisho_app/models/Leason.dart';
 
 class LeasonItem extends StatelessWidget {
-  
   final Leason leason;
   const LeasonItem(this.leason);
 
   void _handleItemClick(BuildContext context) {
-    Navigator.of(context).pushNamed(RouteConstants.LessonDetailsRoute, arguments: leason.id);
+    Navigator.of(context)
+        .pushNamed(RouteConstants.LessonDetailsRoute, arguments: leason.id);
   }
 
   @override
@@ -88,11 +88,17 @@ class LeasonItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Badge(
-                  position: BadgePosition.topEnd(top: 2, end: 2),
-                  badgeContent: Text(leason.commentCount.toString(),style: TextStyle(color: Colors.white,fontSize: 9),),
+                badges.Badge(
+                  position: badges.BadgePosition.topEnd(top: 2, end: 2),
+                  badgeContent: Text(
+                    leason.commentCount.toString(),
+                    style: TextStyle(color: Colors.white, fontSize: 9),
+                  ),
                   child: IconButton(
-                    icon: Icon(Icons.message,color: Theme.of(context).primaryColor,),
+                    icon: Icon(
+                      Icons.message,
+                      color: Theme.of(context).primaryColor,
+                    ),
                     onPressed: () {},
                   ),
                   badgeColor: Theme.of(context).accentColor,

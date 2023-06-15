@@ -38,13 +38,14 @@ class _HomeState extends State<Home> {
     SharedPreferences.getInstance().then((sp) {
       sharedPreferences = sp;
       //refresh login time
-      sharedPreferences!.setString(LOGIN_TIME, DateFormat("yyyy-MM-dd HH:mm").format(DateTime.now()).toString());
+      sharedPreferences!.setString(LOGIN_TIME,
+          DateFormat("yyyy-MM-dd HH:mm").format(DateTime.now()).toString());
     });
     Provider.of<Years>(context, listen: false).fetchYears();
   }
 
-  static const String LOGIN_TIME ='LOGIN_TIME';
-  static const String LOGIN_STATE ='LOGIN_STATE';
+  static const String LOGIN_TIME = 'LOGIN_TIME';
+  static const String LOGIN_STATE = 'LOGIN_STATE';
   SharedPreferences? sharedPreferences;
   ValueNotifier<bool> isDialOpen = ValueNotifier(false);
 
@@ -54,127 +55,136 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(child: DefaultTabController(
-      length: 5,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("UMUHUZA"),
-          backgroundColor: Colors.blue[700],
-          centerTitle: true,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(30.0),
-              bottomRight: Radius.circular(30.0),
+    return OrientationBuilder(
+        builder: (BuildContext context, Orientation orientation) {
+      return WillPopScope(
+          child: DefaultTabController(
+            length: 5,
+            child: Scaffold(
+              appBar: AppBar(
+                title: Text("UMUHUZA"),
+                backgroundColor: Colors.blue[700],
+                centerTitle: true,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(30.0),
+                    bottomRight: Radius.circular(30.0),
+                  ),
+                ),
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: GestureDetector(
+                        onTap: () {
+                          showLanguageMenu(context);
+                        },
+                        child: Icon(FontAwesomeIcons.language)),
+                  )
+                ],
+                bottom: TabBar(
+                  isScrollable: true,
+                  labelStyle: orientation==Orientation.landscape?TextStyle(fontSize: 13):TextStyle(fontSize: 9.0),
+                  indicatorWeight: 2,
+                  indicatorColor: Color.fromARGB(255, 240, 239, 239),
+                  labelPadding: EdgeInsets.only(left: 10),
+                  tabs: <Widget>[
+                    Tab(
+                      icon: Icon(
+                        Icons.play_circle,
+                      ),
+                      text: 'Info & Media'.tr(),
+                    ),
+                    Tab(
+                      icon: Icon(Icons.castle),
+                      text: 'The Nation\nAcademy'.tr(),
+                    ),
+                    Tab(
+                      icon: Icon(Icons.people),
+                      text: 'Youth Season\n Day'.tr(),
+                    ),
+                    Tab(
+                      icon: Icon(Icons.stream),
+                      text: 'Umutamenwa',
+                    ),
+                    Tab(
+                      icon: Icon(
+                        Icons.people,
+                      ),
+                      text: 'Iwacu\nCommunity',
+                    ),
+                  ],
+                ),
+              ),
+              body: TabBarView(
+                children: <Widget>[
+                  VideoLessonsScreen(),
+                  BreakingNews(),
+                  SangizaUbumenyi(),
+                  IbikorwaByubumuntu(),
+                  ClubIwacu(),
+                ],
+              ),
+              floatingActionButton: SpeedDial(
+                animatedIcon: AnimatedIcons.menu_close,
+                backgroundColor: Colors.blue[700],
+                overlayColor: Colors.grey,
+                overlayOpacity: 0.5,
+                spacing: 15,
+                spaceBetweenChildren: 15,
+                closeManually: false,
+                children: [
+                  SpeedDialChild(
+                      child: Icon(Icons.share_rounded),
+                      label: 'share'.tr(),
+                      backgroundColor: Colors.blue[400],
+                      onTap: () {
+                        Share.share(
+                            'Download Inyigisho app at https://inyigisho.com/download');
+                      }),
+                  SpeedDialChild(
+                      child: Icon(Icons.speaker_phone),
+                      label: 'testimony'.tr(),
+                      backgroundColor: Colors.blue[400],
+                      onTap: () {
+                        showPlatformDialog(context);
+                      }),
+                  SpeedDialChild(
+                      child: Icon(Icons.archive),
+                      label: 'archive'.tr(),
+                      backgroundColor: Colors.blue[400],
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Archives()));
+                      }),
+                  SpeedDialChild(
+                      child: Icon(Icons.contact_page_rounded),
+                      label: 'contact_us'.tr(),
+                      backgroundColor: Colors.blue[400],
+                      onTap: () {
+                        showPlatformDialog(context);
+                      }),
+                  SpeedDialChild(
+                      child: Icon(Icons.logout),
+                      label: 'logout'.tr(),
+                      backgroundColor: Colors.blue[400],
+                      onTap: () {
+                        setState(() {
+                          sharedPreferences!.setBool(LOGIN_STATE, false);
+                        });
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WelcomePage()),
+                            (Route<dynamic> route) => false);
+                      }),
+                ],
+              ),
             ),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: GestureDetector(onTap: () {
-                showLanguageMenu(context);
-              }, child: Icon(FontAwesomeIcons.language)),
-            )
-          ],
-          bottom: TabBar(
-            isScrollable: true,
-            labelStyle: TextStyle(fontSize: 8.0),
-            indicatorWeight: 2,
-            indicatorColor: Color.fromARGB(255, 240, 239, 239),
-            labelPadding: EdgeInsets.only(left: 10),
-            tabs: <Widget>[
-              Tab(
-                icon: Icon(
-                  Icons.play_circle,
-                ),
-                text: 'Info & Media'.tr(),
-              ),
-               Tab(
-                icon: Icon(Icons.castle),
-                text: 'The Nation\nAcademy'.tr(),
-              ),
-                Tab(
-                icon: Icon(Icons.people),
-                text: 'Youth Season\n Day'.tr(),
-              ),
-              Tab(
-                icon: Icon(Icons.stream),
-                text: 'Umutamenwa',
-              ),
-              Tab(
-                icon: Icon(
-                  Icons.people,
-                ),
-                text: 'Iwacu\nCommunity',
-              ),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: <Widget>[
-            VideoLessonsScreen(),
-            BreakingNews(),
-            SangizaUbumenyi(),
-            IbikorwaByubumuntu(),
-            ClubIwacu(),
-          ],
-        ),
-        floatingActionButton: SpeedDial(
-          animatedIcon: AnimatedIcons.menu_close,
-          backgroundColor: Colors.blue[700],
-          overlayColor: Colors.grey,
-          overlayOpacity: 0.5,
-          spacing: 15,
-          spaceBetweenChildren: 15,
-          closeManually: false,
-          children: [
-            SpeedDialChild(
-                child: Icon(Icons.share_rounded),
-                label: 'share'.tr(),
-                backgroundColor: Colors.blue[400],
-                onTap: (){
-                  Share.share('Download Inyigisho app at https://inyigisho.com/download');
-                }
-            ),
-            SpeedDialChild(
-                child: Icon(Icons.speaker_phone),
-                label: 'testimony'.tr(),
-                backgroundColor: Colors.blue[400],
-                onTap: (){
-                  showPlatformDialog(context);
-                }
-            ),
-            SpeedDialChild(
-                child: Icon(Icons.archive),
-                label: 'archive'.tr(),
-                backgroundColor: Colors.blue[400],
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => Archives()));
-                }
-            ),
-            SpeedDialChild(
-                child: Icon(Icons.contact_page_rounded),
-                label: 'contact_us'.tr(),
-                backgroundColor: Colors.blue[400],
-                onTap: (){
-                  showPlatformDialog(context);
-                }
-            ),
-            SpeedDialChild(
-                child: Icon(Icons.logout),
-                label: 'logout'.tr(),
-                backgroundColor: Colors.blue[400],
-                onTap: (){
-                  setState((){
-                    sharedPreferences!.setBool(LOGIN_STATE, false);
-                  });
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => WelcomePage()), (Route<dynamic> route) => false);
-                }
-            ),
-          ],
-        ),
-      ),
-    ), onWillPop: _willPopCallback );
+          onWillPop: _willPopCallback);
+    });
   }
-
 }
